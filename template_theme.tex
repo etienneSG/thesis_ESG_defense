@@ -1,0 +1,273 @@
+% Template for LaTeX slides
+% Provide by E. de Saint Germain
+% Last version: January, 2016
+
+% Logo
+\newcommand{\mylogo}{images/logo_argon_gray.png}
+\newcommand{\coverlogo}{images/logo_argon_white.png}
+
+% Second logo / Client Logo
+\newcommand{\clientlogo}{images/logo_ponts.png}
+
+% Image theme
+\newcommand{\imagetheme}{images/Argon_theme.jpg}
+
+% Margin
+\newlength{\xlmargin}
+\setlength{\xlmargin}{0.02\paperwidth}  % Left margin
+\newlength{\xrmargin}
+\setlength{\xrmargin}{0.98\paperwidth}  % Right margin
+
+\newlength{\headerheight}
+\setlength{\headerheight}{0.95cm} % Header height
+\newlength{\footerheight}
+\setlength{\footerheight}{0.7cm}  % Footer height
+
+\newlength{\blockwidth}
+\setlength{\blockwidth}{\paperwidth-.2cm-4pt} % Default width of text block
+
+% Color theme
+\newcommand{\maincolor}{argon orange} % Main color
+\newcommand{\secondcolor}{argon gray} % Secundary color
+
+% Format of classical slides
+\newenvironment{myframe}[1][\insertsubsection]{\begin{frame}[plain]\startmyframe{#1}}{\stopmyframe\end{frame}}
+
+\newcommand\startmyframe[1]{
+  \begin{centering}
+    \begin{tikzpicture}
+
+      % Windows
+      \clip (0,0) rectangle (\paperwidth,\paperheight);
+
+      % Current coordinate
+      \coordinate (current) at (0. ,8.25cm);
+
+      % Title of the slide
+      %\node[anchor = west, color = \maincolor] (slidename) at (\xlmargin, {\paperheight-.5*\headerheight}) {\textbf{#1}};
+      \node[anchor = west, color = \maincolor] (slidename) at (\xlmargin, {\paperheight-.5*\headerheight}) {\begin{minipage}{.93\paperwidth}\textbf{#1}\end{minipage}};
+
+      % Rectangle on the right
+      \draw[color=\secondcolor, fill=\secondcolor] ({\paperwidth-.2cm},\paperheight) rectangle (\paperwidth,{\paperheight-\headerheight});
+      \draw[color=\maincolor, fill=\maincolor] ({\paperwidth-.2cm},{\paperheight-\headerheight}) rectangle (\paperwidth,\footerheight);
+
+      % Separator from the body of the slide
+      \draw[color=\maincolor] (0,{\paperheight-\headerheight}) -- (\paperwidth,{\paperheight-\headerheight});
+
+      % Line to help construction. Remove in final version.
+      %\myhelplines
+}
+
+\newcommand\stopmyframe{
+      % Separator from the body of the slide
+      \draw[color=\secondcolor] (0,\footerheight) -- (\paperwidth,\footerheight);
+
+      % Logos
+      \node[anchor = west]  at (\xlmargin,{(\footerheight+.1cm)/2}) {\includegraphics[height={\footerheight-.25cm}]{\mylogo}};
+      \node[anchor = east]  at ({\xrmargin},{(\footerheight+.1cm)/2}) {\includegraphics[height={\footerheight-.20cm}]{\clientlogo}};
+
+      % Numbering pages
+      \node[anchor = south] at (.5*\paperwidth,0) {\footnotesize \insertframenumber{} / \inserttotalframenumber};
+
+      \draw[color=\maincolor, fill=\maincolor] (0,0) rectangle (\paperwidth,.1cm);
+
+    \end{tikzpicture}
+  \end{centering}
+
+}
+
+
+% Cover frame
+% #1 title
+% #2 subtitle
+% #3 date
+% #4 authors
+\newcommand{\covermargin}{2cm}
+\newcommand{\coverwidth}{.75\paperwidth}
+\newcommand{\coverframe}[4]{
+  \begin{frame}[plain]
+    \begin{centering}
+      \begin{tikzpicture}
+
+        % Windows
+        \clip (0,0) rectangle (\paperwidth,\paperheight);
+
+        % Rectangles on the top
+        \shade[left color=\secondcolor!90, right color=black!80] (0,\paperheight) rectangle (\paperwidth,{\paperheight-2.4cm});
+        \draw[color=\maincolor, fill=\maincolor] (0,{\paperheight-2.4cm}) rectangle (\paperwidth,{\paperheight-2.9cm});
+
+        % Logo
+        \node[anchor = south east]  at ({\paperwidth-.9cm},{\paperheight-2.35cm}) {\includegraphics[height=0.5cm]{\coverlogo}};
+        % Site web
+        \node[anchor = east, color=white] (website) at ({\paperwidth-.9cm},{\paperheight-2.65cm}) {\footnotesize www.argon-consult.com};
+
+        % Subtitle
+        \node[anchor = west, color=\maincolor] (subtitle) at (\covermargin,{.33*\paperheight}) { \begin{minipage}{\coverwidth}\footnotesize \textbf{#2}\end{minipage} };
+        % Title
+        \node[anchor = south west, color=black] (title) at ($(subtitle.north west) + (0,.1cm)$) { \begin{minipage}{\coverwidth}\small\textbf{#1}\end{minipage} };
+        % Date
+        \node[anchor = north west, color=\secondcolor!60] (date) at ($(subtitle.south west) - (0,.1cm)$) { \begin{minipage}{\coverwidth}\footnotesize \textbf{#3}\end{minipage} };
+
+
+        % Client logo / second logo
+        \coordinate (website_SE) at ({\paperwidth-.9cm},{\paperheight-2.9cm});
+        \coordinate (title_SE) at (title.north east);
+        \coordinate (client_logo_E) at ($(website_SE)!.5!(title_SE)$);
+        \node[anchor = east]  (client logo) at (client_logo_E) {\includegraphics[height=0.6cm]{\clientlogo}};
+
+        % Authors
+        \node[anchor = south, color=\secondcolor!60] (authors) at ({.5*\paperwidth},.5cm) {{\footnotesize \textbf{#4}}};
+
+        % Rectangle at the bottom
+        \draw[color=\maincolor, fill=\maincolor] (0,0) rectangle (\paperwidth,.1cm);
+
+      \end{tikzpicture}
+    \end{centering}
+  \end{frame}
+}
+
+
+
+% Line to help construction. Remove in final version.
+\newcommand\myhelplines{    
+  \draw[help lines] (0,0) grid (\paperwidth, \paperheight); 
+  \foreach \x in {1,...,12} { \node [anchor=south west, color=gray] at (\x,0) {\x}; }
+  \foreach \y in {1,...,10} { \node [anchor=south west, color=gray] at (0,\y) {\y}; }
+}
+
+
+
+% Box to place latex frames
+% #1 position, current by default
+% #2 name of the box
+% #3 width
+% #4 tikz options
+% #5 text
+\newcommandx{\mytext}[5][1=current,2=box,usedefault]{
+  \node[anchor = north west, inner sep = 2pt, #4] (#2) at (#1) {
+    \small
+    \begin{minipage}{#3}
+      #5
+    \end{minipage}
+  };
+  \coordinate (current) at (#2.south west);
+}
+
+
+% Box to place latex frames
+% #1 position, current by default
+% #2 name of the box
+% #3 width
+% #4 tikz options
+% #5 text
+\newcommandx{\quicker}[5][1={$(current)+({.015*\blockwidth},0)$},2=box,usedefault]{
+  \node[anchor = north west, inner sep = 3pt, fill=\secondcolor!25, #4] (#2) at (#1) {
+    \small
+    \begin{minipage}{.97\blockwidth}
+      \center #5
+    \end{minipage}
+  };
+  \coordinate (current) at ($(current |- #2.south west)$);
+}
+
+
+% Table of content style
+\defbeamertemplate{section in toc}{toc style}{%
+  \vspace{.4cm}\leavevmode\leftskip=2pt%
+  \llap{\textcolor{\maincolor}{$\bullet$}}%
+  \kern1.5ex\textcolor{\secondcolor}{\inserttocsection}\par
+}
+\setbeamertemplate{section in toc}[toc style]
+
+\defbeamertemplate{subsection in toc}{toc style}{%
+  \leavevmode\leftskip=0.4cm%
+  \llap{\textcolor{\secondcolor!60}{{\scriptsize$\blacktriangleright$}}}%
+  \kern1.5ex\textcolor{\secondcolor}{\inserttocsubsection}\par
+}
+\setbeamertemplate{subsection in toc}[toc style]
+
+
+% Pop up the table of contents at the beginning of each section:
+\AtBeginSection[]
+{
+  \begin{frame}[plain]
+    \begin{centering}
+      \begin{tikzpicture}
+
+        % Windows
+        \clip (0,0) rectangle (\paperwidth,\paperheight);
+
+        % Headers
+        \node[anchor = west, color = \maincolor] (outline) at (\xlmargin, {\paperheight-.5*\headerheight}) {\textbf{\outline}};
+
+        % Separator from the table of content
+        \draw[color=\maincolor] (0,{\paperheight-\headerheight}) -- (\paperwidth,{\paperheight-\headerheight});
+
+        % Table of contents
+        \mytext[\xlmargin,{\paperheight-2*\headerheight}]{.5\paperwidth}{anchor = north west, inner sep = 2pt
+        }{
+          \setcounter{tocdepth}{2}
+          \renewcommand{\baselinestretch}{1.}\small
+          \tableofcontents[currentsection,currentsubsection]
+          \renewcommand{\baselinestretch}{1.}\normalsize
+        }
+
+        % Separator from the body of the slide
+        \draw[color=\secondcolor] (0,\footerheight) -- (\paperwidth,\footerheight);
+
+
+        % Logo
+        \node[anchor = west] at (\xlmargin,{(\footerheight+.1cm)/2}) {\includegraphics[height={\footerheight-.25cm}]{\mylogo}};
+
+        % Rectangle at the bottom
+        \draw[color=\maincolor, fill=\maincolor] (0,0) rectangle (\paperwidth,.1cm);
+
+        % Vertical rectangle
+        \draw[color=\maincolor, fill=\maincolor] (.55*\paperwidth,0) rectangle (.57*\paperwidth,\paperheight);
+        % Image of the theme
+        \node[anchor = west] at (.56*\paperwidth,.5*\paperheight) {\includegraphics[height=\paperheight]{\imagetheme}};
+
+      \end{tikzpicture}
+    \end{centering}
+  \end{frame}
+}
+
+% Remove navigation symbols
+\setbeamertemplate{navigation symbols}{}
+
+% Define default itemization
+\setbeamertemplate{itemize item}{\textcolor{\maincolor}{$\bullet$}}
+\setbeamertemplate{itemize subitem}{\textcolor{\secondcolor!60}{{\scriptsize$\blacktriangleright$}}}
+\setbeamertemplate{itemize subsubitem}{\color{black} \scriptsize $\bullet$}
+\setbeamercolor*{enumerate item}{fg=\maincolor}
+\setbeamercolor*{enumerate subitem}{fg=\secondcolor!60}
+\setbeamercolor*{enumerate subsubitem}{fg=black}
+\settowidth{\leftmargini}{1pt}
+\settowidth{\leftmarginii}{1pt}
+\settowidth{\leftmarginiii}{1pt}
+
+
+\setbeamercolor{bibliography entry author}{fg=argon orange}
+%\setbeamercolor{bibliography entry title}{fg=blue} 
+\setbeamercolor{bibliography entry location}{fg=argon gray!75} 
+%\setbeamercolor{bibliography entry note}{fg=cyan}
+
+
+\makeatletter
+\def\th@mystyle{%
+    \normalfont % body font
+    \setbeamercolor{block title example}{bg=\maincolor,fg=white}
+    \setbeamercolor{block body example}{bg=\maincolor!10,fg=black}
+    \def\inserttheoremblockenv{exampleblock}
+  }
+\makeatother
+\theoremstyle{mystyle}
+\newtheorem*{lem}{Lemma}
+
+
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: "master"
+%%% TeX-PDF-mode: t
+%%% save-place: t
+%%% End:

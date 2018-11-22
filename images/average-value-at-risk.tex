@@ -1,0 +1,27 @@
+\begin{tikzpicture}[font=\small]
+
+  \newcommand*{\abscissa}{-1.}%
+  \pgfmathsetmacro{\ordinate}{6*1/(sqrt(2*pi))*exp(-((\abscissa-1)^2)/4}%
+
+  \begin{scope}[local bounding box=AVaR, scale=.8]
+    % Fill average area
+    \fill[color=red!20] (-3,0) -- plot[domain=-3:-1,smooth,variable=\x,samples=100] ({\x},{6*1/(sqrt(2*pi))*exp(-((\x-1)^2)/4)}) -- (-1,0) -- cycle;
+
+    \draw[->] (-3,0) -- (5,0) node[right] {$X$};
+    \draw[->] (0,-.2) -- (0,3) node[above, anchor=190] {density of $X$};
+    \draw[domain=-3:5,smooth,variable=\x,argon orange] plot ({\x},{6*1/(sqrt(2*pi))*exp(-((\x-1)^2)/4)});
+    \draw[argon gray, dashed] (-1.5,-.2) node[below, anchor=north] {$\frac{1}{\lambda}\int_0^{\lambda}q_{\gamma}^+\bracket{X}\diff\gamma$} -- (-1.5,{1+\ordinate});
+
+%    \draw[argon gray, dashed] (-1,-.2) node[below, anchor=90] {$q_{5\%}^+\bracket{X}$} -- (-1,\ordinate);
+    \draw[red, dashed] (1.5,-.2) node[below, anchor=150] {$\avar_{5\%}\bracket{X}$} -- (1.5,{1.+\ordinate});
+
+    \draw[<->,argon gray] (-1.5,\ordinate+.65) -- (-.05,\ordinate+.65);
+    \draw[argon gray] (-.75,\ordinate+.75) -- (-.8,\ordinate+.55);
+    \draw[argon gray] (-.75,\ordinate+.55) -- (-.7,\ordinate+.75);
+
+    \draw[<->,argon gray] (.05,\ordinate+.65) -- (1.5,\ordinate+.65);
+    \draw[argon gray] (.75,\ordinate+.55) -- (.8,\ordinate+.75);
+    \draw[argon gray] (.75,\ordinate+.75) -- (.7,\ordinate+.55);
+  \end{scope}
+
+\end{tikzpicture}

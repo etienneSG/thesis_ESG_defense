@@ -1,0 +1,430 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%                                                          %%%%%
+%%%%% Commandes math\'{e}matiques                              %%%%%
+%%%%%                                                          %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\cA}{\mathcal{A}}
+\newcommand{\cB}{\mathcal{B}}
+\newcommand{\cC}{\mathcal{C}}
+\newcommand{\cD}{\mathcal{D}}
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cF}{\mathcal{F}}
+\newcommand{\cG}{\mathcal{G}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\cI}{\mathcal{I}}
+\newcommand{\cJ}{\mathcal{J}}
+\newcommand{\cK}{\mathcal{K}}
+\newcommand{\cL}{\mathcal{L}}
+\newcommand{\cM}{\mathcal{M}}
+\newcommand{\cN}{\mathcal{N}}
+\newcommand{\cO}{\mathcal{O}}
+\newcommand{\cP}{\mathcal{P}}
+\newcommand{\cQ}{\mathcal{Q}}
+\newcommand{\cR}{\mathcal{R}}
+\newcommand{\cS}{\mathcal{S}}
+\newcommand{\cT}{\mathcal{T}}
+\newcommand{\cU}{\mathcal{U}}
+\newcommand{\cV}{\mathcal{V}}
+\newcommand{\cW}{\mathcal{W}}
+\newcommand{\cX}{\mathcal{X}}
+\newcommand{\cY}{\mathcal{Y}}
+\newcommand{\cZ}{\mathcal{Z}}
+
+\newcommand{\BB}{\mathbb{B}}
+\newcommand{\CC}{\mathbb{C}}
+\newcommand{\DD}{\mathbb{D}}
+\newcommand{\EE}{\mathbb{E}}
+\newcommand{\FF}{\mathbb{F}}
+\newcommand{\GG}{\mathbb{G}}
+\newcommand{\HH}{\mathbb{H}}
+\newcommand{\II}{\mathbb{I}}
+\newcommand{\JJ}{\mathbb{J}}
+\newcommand{\KK}{\mathbb{K}}
+\newcommand{\LL}{\mathbb{L}}
+\newcommand{\MM}{\mathbb{M}}
+\newcommand{\NN}{\mathbb{N}}
+\newcommand{\OO}{\mathbb{O}}
+\newcommand{\PP}{\mathbb{P}}
+\newcommand{\QQ}{\mathbb{Q}}
+\newcommand{\RR}{\mathbb{R}}
+\newcommand{\TT}{\mathbb{T}}
+\newcommand{\UU}{\mathbb{U}}
+\newcommand{\VV}{\mathbb{V}}
+\newcommand{\WW}{\mathbb{W}}
+\newcommand{\XX}{\mathbb{X}}
+\newcommand{\YY}{\mathbb{Y}}
+\newcommand{\ZZ}{\mathbb{Z}}
+
+
+\def\mathscr{\EuScript}
+
+%%%%% Pour indiquer qu'un sujet continue apres la page indexee
+%%%%% (voir l'index de Rockafellar-Wets : Variational Analysis)
+
+\newcommand{\suiv}[1]{#1+}
+
+%%%%% Notations pour la mod\'{e}lisation des probl\`{e}mes d'optimisation
+
+\newcommand{\dynamics}{f}                                   % Dynamique
+\newcommand{\criterion}{\jmath}                             % Crit\`{e}re
+\newcommand{\Criterion}{J}                                  % Crit\`{e}re apres esperance
+\newcommand{\feedback}{\gamma}                              % Feedback
+\newcommand{\Feedback}{\Gamma}                              % Ensemble des feedbacks
+
+%%%%% Math\'{e}matiques g\'{e}n\'{e}rales
+
+\newcommand{\defegal}{:=}                                   % D\'{e}finition
+
+\newcommand{\IFF}{iff~}                                     % if and only if
+
+\newcommand{\abs}[1]{\left|#1\right|}                       % Valeur absolue
+\newcommand{\norm}[1]{\left\|#1\right\|}                    % Norme
+\newcommand{\sqnorm}[1]{\left\|#1\right\|^{2}}              % Norme au carr\'{e}
+
+\newcommand{\derpar}[2]{\frac{\partial#1}{\partial#2}}      % D\'{e}riv\'{e}e partielle
+\newcommand{\dertot}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}  % D\'{e}riv\'{e}e totale
+\newcommand{\diff}{\mathrm{d}}                              % Diff\'{e}rentielle
+
+\newcommand{\projop}[1]{\mathrm{proj}_{#1}}                 % Op\'{e}rateur projection
+\newcommand{\proj}[2]{\projop{#1}\left(#2\right)}           % Projection
+\newcommand{\dist}[2]{\mathrm{dist}_{#1}\left(#2\right)}    % Distance
+
+\newcommand{\procar}{\mathop{\times}}                       % Produit cart\'{e}sien
+
+%%%%% Superscripts
+
+\newcommand{\ortho}{^{\bot}}                                % Orthogonalit\'{e}
+\newcommand{\transp}{^{\top}}                               % Transposition
+\newcommand{\dual}{^{\star}}                                % Dualit\'{e}
+\newcommand{\bidual}{^{\star\star}}                         % Dualit\'{e}
+\newcommand{\opt}{^{\sharp}}                                % Optimalit\'{e}
+\newcommand{\ad}{^{\mathrm{ad}}}                            % Admissibilit\'{e}
+\newcommand{\co}{^{\mathrm{co}}}                            % Convexit\'{e}
+\newcommand{\compl}{^{\mathrm{C}}}                          % Compl\'{e}mentarit\'{e}
+\newcommand{\compo}{\mathop{\scriptstyle\circ}}             % Composition
+
+\newcommand{\comp}{\compo}                                  % Compatibilit\'{e} ant\'{e}rieure
+
+%%%%% Parenth\`{e}ses, crochets et accolades de taille variable
+
+\newcommand{\bracket}[1]{\left(#1\right)}                   % Parenth\`{e}se
+\newcommand{\sqbracket}[1]{\left[#1\right]}                 % Crochet normal
+\newcommand{\crbracket}[1]{\left\{#1\right\}}               % Accolade normale
+
+%%%%% Intervale d'entiers
+% If the lower bound is not specified, it assumes 1.
+\makeatletter
+\def\range{\@ifnextchar[{\@with}{\@without}}
+\def\@with[#1]#2{\left\llbracket#1,#2\right\rrbracket}
+\def\@without#1{\sqbracket{#1}}
+\makeatother
+%\newcommand{\range}[2][1]{\left\llbracket#1,#2\right\rrbracket}
+%\newcommand{\range}[2][1]{\left\{#1,\ldots,#2\right\}}
+
+%%%%% Cardinal d'un ensemble
+\newcommand{\card}[1]{\left\vert{#1}\right\vert}
+
+%%%%% Parenth\`{e}ses, crochets et accolades taille fixe
+
+\newcommand{\nnorm}[1]{\|#1\|} 
+\newcommand{\bnorm}[1]{\big\|#1\big\|}
+\newcommand{\Bnorm}[1]{\Big\|#1\Big\|}
+\newcommand{\bgnorm}[1]{\bigg\|#1\bigg\|}
+\newcommand{\Bgnorm}[1]{\Bigg\|#1\Bigg\|}
+
+\newcommand{\np}[1]{(#1)}                                   % Parenth\`{e}se normal
+\newcommand{\bp}[1]{\big(#1\big)}                           % Parenth\`{e}se big
+\newcommand{\Bp}[1]{\Big(#1\Big)}                           % Parenth\`{e}se Big
+\newcommand{\bgp}[1]{\bigg(#1\bigg)}                        % Parenth\`{e}se bigg
+\newcommand{\Bgp}[1]{\Bigg(#1\Bigg)}                        % Parenth\`{e}se Bigg
+
+\newcommand{\nc}[1]{[#1]}                                   % Crochet normal
+\newcommand{\bc}[1]{\big[#1\big]}                           % Crochet big
+\newcommand{\Bc}[1]{\Big[#1\Big]}                           % Crochet Big
+\newcommand{\bgc}[1]{\bigg[#1\bigg]}                        % Crochet bigg
+\newcommand{\Bgc}[1]{\Bigg[#1\Bigg]}                        % Crochet Bigg
+
+\newcommand{\na}[1]{\{#1\}}                                 % Accolade normal
+\newcommand{\ba}[1]{\big\{#1\big\}}                         % Accolade big
+\newcommand{\Ba}[1]{\Big\{#1\Big\}}                         % Accolade Big
+\newcommand{\bga}[1]{\bigg\{#1\bigg\}}                      % Accolade bigg
+\newcommand{\Bga}[1]{\Bigg\{#1\Bigg\}}                      % Accolade Bigg
+
+%%%%% Versions avec s\'{e}parateur
+
+\newcommand{\nps}[2]{\np{#1\mid#2}}                         % Parenth\`{e}se normal
+\newcommand{\bps}[2]{\bp{#1\ \big|\ #2}}                    % Parenth\`{e}se big
+\newcommand{\Bps}[2]{\Bp{#1\ \Big|\ #2}}                    % Parenth\`{e}se Big
+\newcommand{\bgps}[2]{\bgp{#1\ \bigg|\ #2}}                 % Parenth\`{e}se bigg
+\newcommand{\Bgps}[2]{\Bgp{#1\ \Bigg|\ #2}}                 % Parenth\`{e}se Bigg
+
+\newcommand{\ncs}[2]{\nc{#1\mid#2}}                         % Crochet normal
+\newcommand{\bcs}[2]{\bc{#1\ \big|\ #2}}                    % Crochet big
+\newcommand{\Bcs}[2]{\Bc{#1\ \Big|\ #2}}                    % Crochet Big
+\newcommand{\bgcs}[2]{\bgc{#1\ \bigg|\ #2}}                 % Crochet bigg
+\newcommand{\Bgcs}[2]{\Bgc{#1\ \Bigg|\ #2}}                 % Crochet Bigg
+
+\newcommand{\nas}[2]{\na{#1\mid#2}}                         % Accolade normal
+\newcommand{\bas}[2]{\ba{#1\ \big|\ #2}}                    % Accolade big
+\newcommand{\Bas}[2]{\Ba{#1\ \Big|\ #2}}                    % Accolade Big
+\newcommand{\bgas}[2]{\bga{#1\ \bigg|\ #2}}                 % Accolade bigg
+\newcommand{\Bgas}[2]{\Bga{#1\ \Bigg|\ #2}}                 % Accolade Bigg
+
+%%%%% Optimisation
+
+\newcommand{\espace}[1]{\mathbb{#1}}                        % Espace de Hilbert
+\newcommand{\partie}[1]{#1}                                 % Sous-ensemble
+\newcommand{\cone}[1]{#1}                                   % C\^{o}ne
+\newcommand{\fident}[1]{\mathrm{I}_{#1}}                    % Fonction identit\'{e}
+\newcommand{\fcara}[1]{\chi_{{}_{#1}}}                      % Fonction caract\'{e}ristique
+\newcommand{\findi}[1]{\mathbf{1}_{#1}}                     % Fonction indicatrice
+\newcommand{\argmin}{\mathop{\arg\min}}                     % Arg-min
+\newcommand{\argmax}{\mathop{\arg\max}}                     % Arg-max
+\newcommand{\gradi}[2][]{\nabla_{#1}#2}                     % Gradient partiel
+\newcommand{\hessi}[1]{\nabla^{2}#1}                        % Hessien
+
+%%%%% Probabilit\'{e}s
+
+\newcommand{\espacea}[1]{\mathbb{#1}}                       % Espace d'arriv\'{e}e
+\newcommand{\espacef}[1]{\mathcal{#1}}                      % Espace fonctionnel
+\newcommand{\tribu}[1]{\mathscr{#1}}                        % Tribu
+\newcommand{\borel}[1]{\tribu{B}_{#1}^{\mathrm{o}}}         % Tribu borelienne
+\newcommand{\omeg}{\Omega}                                  % espace du triplet
+\newcommand{\trib}{\tribu{A}}                               % tribu  du triplet
+\newcommand{\partset}[1]{\mathfrak{P}\left(#1\right)}       % Ensemble des partitions
+\newcommand{\prbt}{\mathbb{P}}                              % proba  du triplet
+\newcommand{\espe}{\mathbb{E}}                              % Symbole esp\'{e}rance
+\newcommand{\variold}{\mathbb{V}}                           % Ancien symbole variance
+\newcommand{\vari}{\mathrm{Var}}                            % Symbole variance
+\newcommand{\var}{\mathrm{V@R}}                             % Symbole value at risk
+\newcommand{\avar}{\mathrm{A}\var}                          % Symbole Average value at risk
+\newcommand{\espaceva}[3][]{L_{#1}^{2}\left(#2;#3\right)}   % Espace L2
+\newcommand{\Sfield}[1]{\sigma\left(#1\right)}              % sigma-field generated by the random variable #1
+
+%%%%% Variable al\'{e}atoire
+
+\makeatletter
+\def\va@a{\boldsymbol{\va@arg^{\textstyle\text{\unboldmath$\scriptstyle\va@expo$}}_{\textstyle\text{\unboldmath$\scriptstyle\va@index$}}}}
+\def\va#1{\def\va@expo{}\def\va@index{}\def\va@arg{#1}%
+  \@ifnextchar^{\va@h}{\@ifnextchar_\va@u\va@a}}
+\def\va@h^#1{\def\va@expo{#1}\@ifnextchar_\va@hu\va@a}
+\def\va@u_#1{\def\va@index{#1}\@ifnextchar^\va@uh\va@a}
+\def\va@hu_#1{\def\va@index{#1}\va@a}
+\def\va@uh^#1{\def\va@expo{#1}\va@a}
+\makeatother
+
+%%%%% Choix du delimiteur (parenth\`{e}se) pour probabilit\'{e}, esp\'{e}rance...
+
+\newcommand{\normdelim}[1]{\nc{#1}}                         % Taille ``normal''
+\newcommand{\bigdelim}[1]{\bc{#1}}                          % Taille ``big''
+\newcommand{\Bigdelim}[1]{\Bc{#1}}                          % Taille ``Big''
+\newcommand{\biggdelim}[1]{\bgc{#1}}                        % Taille ``bigg''
+\newcommand{\Biggdelim}[1]{\Bgc{#1}}                        % Taille ``Bigg''
+\newcommand{\vardelim}[1]{\left[#1\right]}                  % Taille ``variable''
+
+\newcommand{\normdelims}[2]{\normdelim{#1\mid#2}}           % avec s\'{e}parateur
+\newcommand{\bigdelims}[2]{\bigdelim{#1\ \big|\ #2}}        %
+\newcommand{\Bigdelims}[2]{\Bigdelim{#1\ \Big|\ #2}}        %
+\newcommand{\biggdelims}[2]{\biggdelim{#1\ \bigg|\ #2}}     %
+\newcommand{\Biggdelims}[2]{\Biggdelim{#1\ \Bigg|\ #2}}     %
+\newcommand{\vardelims}[2]{\vardelim{#1\mid#2}}             %
+
+%% Esp\'{e}rance
+
+\newcommand{\nesp}[2][]{\espe_{#1}\normdelim{#2}}           % Esp\'{e}rance normal
+\newcommand{\besp}[2][]{\espe_{#1}\bigdelim{#2}}            % Esp\'{e}rance big
+\newcommand{\Besp}[2][]{\espe_{#1}\Bigdelim{#2}}            % Esp\'{e}rance Big
+\newcommand{\bgesp}[2][]{\espe_{#1}\biggdelim{#2}}          % Esp\'{e}rance bigg
+\newcommand{\Bgesp}[2][]{\espe_{#1}\Biggdelim{#2}}          % Esp\'{e}rance Bigg
+
+%% Esp\'{e}rance conditionnelle
+
+\newcommand{\nespc}[3][]{\espe_{#1}\normdelims{#2}{#3}}     % Esp\'{e}rance cond. normal
+\newcommand{\bespc}[3][]{\espe_{#1}\bigdelims{#2}{#3}}      % Esp\'{e}rance cond. big
+\newcommand{\Bespc}[3][]{\espe_{#1}\Bigdelims{#2}{#3}}      % Esp\'{e}rance cond. Big
+\newcommand{\bgespc}[3][]{\espe_{#1}\biggdelims{#2}{#3}}    % Esp\'{e}rance cond. bigg
+\newcommand{\Bgespc}[3][]{\espe_{#1}\Biggdelims{#2}{#3}}    % Esp\'{e}rance cond. Bigg
+
+%% Probabilit\'{e}
+
+\newcommand{\nprob}[1]{\prbt\normdelim{#1}}                 % Probabilit\'{e} normal
+\newcommand{\bprob}[1]{\prbt\bigdelim{#1}}                  % Probabilit\'{e} big
+\newcommand{\Bprob}[1]{\prbt\Bigdelim{#1}}                  % Probabilit\'{e} Big
+\newcommand{\bgprob}[1]{\prbt\biggdelim{#1}}                % Probabilit\'{e} bigg
+\newcommand{\Bgprob}[1]{\prbt\Biggdelim{#1}}                % Probabilit\'{e} Bigg
+
+%% Variance
+
+\newcommand{\nvar}[2][]{\vari_{#1}\normdelim{#2}}           % Variance normal
+\newcommand{\bvar}[2][]{\vari_{#1}\bigdelim{#2}}            % Variance big
+\newcommand{\Bvar}[2][]{\vari_{#1}\Bigdelim{#2}}            % Variance Big
+\newcommand{\bgvar}[2][]{\vari_{#1}\biggdelim{#2}}          % Variance bigg
+\newcommand{\Bgvar}[2][]{\vari_{#1}\Biggdelim{#2}}          % Variance Bigg
+
+%% Compatibilit\'{e} ant\'{e}rieure
+
+\newcommand{\proba}[1]{\prbt\vardelim{#1}}                  % Probabilit\'{e}
+\newcommand{\esper}[2][]{\espe_{#1}\vardelim{#2}}           % Esp\'{e}rance avec argument optionnel
+\newcommand{\espcond}[3][]{\espe_{#1}\vardelims{#2}{#3}}    % Esp\'{e}rance cond.
+\newcommand{\varian}[2][]{\vari_{#1}\vardelim{#2}}          % Variance
+\newcommand{\sequence}[2]{\left\{#1\right\}_{#2}}           % Suite
+\newcommand{\proscal}[2]{\left\langle#1\:,#2\right\rangle}  % Produit scalaire
+
+%%%%% Suite
+
+\newcommand{\nsuit}[2]{\na{#1}_{#2}}                        % Suite normal
+\newcommand{\bsuit}[2]{\ba{#1}_{#2}}                        % Suite big
+\newcommand{\Bsuit}[2]{\Ba{#1}_{#2}}                        % Suite Big
+\newcommand{\bgsuit}[2]{\bga{#1}_{#2}}                      % Suite bigg
+\newcommand{\Bgsuit}[2]{\Bga{#1}_{#2}}                      % Suite Bigg
+
+%%%%% Projection
+
+\newcommand{\nproj}[2]{\projop{#1}\np{#2}}                  % Projection normal
+\newcommand{\bproj}[2]{\projop{#1}\bp{#2}}                  % Projection big
+\newcommand{\Bproj}[2]{\projop{#1}\Bp{#2}}                  % Projection Big
+\newcommand{\bgproj}[2]{\projop{#1}\bgp{#2}}                % Projection bigg
+\newcommand{\Bgproj}[2]{\projop{#1}\Bgp{#2}}                % Projection Bigg
+
+%%%%% Produit scalaire
+
+\newcommand{\nscal}[2]{\langle#1\:,#2\rangle}               % Produit scalaire
+\newcommand{\bscal}[2]{\big\langle#1\:,#2\big\rangle}       % Produit scalaire
+\newcommand{\Bscal}[2]{\Big\langle#1\:,#2\Big\rangle}       % Produit scalaire
+\newcommand{\bgscal}[2]{\bigg\langle#1\:,#2\bigg\rangle}    % Produit scalaire
+\newcommand{\Bgscal}[2]{\Bigg\langle#1\:,#2\Bigg\rangle}    % Produit scalaire
+
+%%%%% Valeur absolue, norme
+
+\newcommand{\nabs}[1]{|#1|}                                 % Valeur absolue
+\newcommand{\babs}[1]{\big|#1\big|}                         % Valeur absolue
+\newcommand{\Babs}[1]{\Big|#1\Big|}                         % Valeur absolue
+\newcommand{\bgabs}[1]{\bigg|#1\bigg|}                      % Valeur absolue
+\newcommand{\Bgabs}[1]{\Bigg|#1\Bigg|}                      % Valeur absolue
+
+%%%%% Abbr\'{e}viations
+
+\newcommand{\dom}{\mathop{\mathrm{dom}}}                    % Domaine
+\newcommand{\relint}{\mathop{\mathrm{ri}}}                  % Int\'{e}rieur relatif
+%\newcommand{\conv}{\mathop{\mathrm{co}}}                    % Enveloppe convexe
+\newcommand{\convf}{\mathop{\overline{\mathrm{co}}}}        % Enveloppe convexe ferm\'{e}e
+\newcommand{\epi}{\mathop{\mathrm{epi}}}                    % ``epi''
+
+\newcommand{\lsc}{\operatorname{l.s.c.}}                            % ``l.s.c.''
+\newcommand{\usc}{\operatorname{u.s.c.}}                            % ``u.s.c.''
+\newcommand{\iid}{\operatorname{i.i.d.}}                            % ``i.i.d.''
+\newcommand{\as}{\operatorname{a.s.}}                               % ``a.s.''
+\newcommand{\Pps}{\operatorname{$\prbt$-}\as}                       % ``P-a.s.''
+\multilangnewcommand{\st}{\operatorname{s.t.}}{\operatorname{s.c.}} % ``s.c.''
+
+
+%%%%% Grilles
+
+\newcommand{\grid}[1]{\boldsymbol{\lowercase{#1}}}          % Grille
+\newcommand{\gridop}[1]{\mathfrak{#1}}                      % Operateur sur grille
+
+%%%%% Sample et realisation de W
+
+\newcommand{\sW}[1]{\va{w}^{(#1)}}
+\newcommand{\rW}[1]{w^{(#1)}}
+
+%%%%% Ponctuation dans les equations
+
+\def\eqsepv{\; , \enspace}                                  % Virgule dans une \'{e}quation
+\def\eqfinv{\; ,}                                           % Virgule en fin d'\'{e}quation
+\def\eqfinp{\; .}                                           % Point en fin d'\'{e}quation
+\def\eqfinpv{\; ;}                                          % Point-virgule en fin d'\'{e}quation
+
+%%%%% Commandes provisoires
+
+%% Lin\'{e}airement born\'{e}
+
+\newcommand{\LB}[1]{\mathcal{L}_{\mathrm{B}}\left(#1\right)}
+
+%%%%% Exemples de commandes compos\'{e}es
+
+%% Sous-ensemble admissible d'un espace et projection associ\'{e}e
+
+\newcommand{\Uad}{\partie{U}\ad}
+\newcommand{\Pad}[1]{\proj{\Uad}{#1}}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%                                                          %%%%%
+%%%%% Variables                                                %%%%%
+%%%%%                                                          %%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Commun
+\newcommand\REF{\cI}  % Ensemble des références
+
+
+% Modèle multi-ligne
+\newcommand\capa{cap}  % Capacité des lignes
+\newcommand\aff{a}     % Matrice d'affectation
+\newcommand\occ{or}    % Taux d'occupation unitaire des lignes
+
+
+% Modele PDP
+\newcommand\nbPeriod{T}                             % Number of periods
+\newcommand\demandPR[2]{d_{#1}^{#2}}                % Demand in reference #2 at period #1
+\newcommand\aleaDemandPR[2]{\va{d}_{#1}^{#2}}       % Stochastic demand in reference #2 at period #1
+\newcommand\holdingCostPR[2]{h_{#1}^{#2}}           % holding cost of reference #2 at the end of period #1
+\newcommand\capaP[1]{c_{#1}}                        % Capacity of the assembly line at period #1
+\newcommand\capaPR[2]{c_{#1}^{#2}}                  % Capacity of the assembly line at period #1 for the reference #2
+\newcommand\occupationRatePR[2]{v_{#1}^{#2}}        % Capacity needed for assembly line to produce one unit of reference #2 at period #1
+                                                    % = throughput of the line
+\newcommand\nbChange{N}                             % Total number of changes of the line
+\newcommand\nbChangeP[1]{N_{#1}}                    % Number of change per during period #1
+\newcommand\isProducedPR[2]{x_{#1}^{#2}}            % 1 if reference #2 is producted at period #1 and 0 otherwise
+\newcommand\aleaIsProductedPR[2]{\va{x}_{#1}^{#2}}  % 1 if reference #2 is producted at period #1 and 0 otherwise (random version)
+\newcommand\quantityPR[2]{q_{#1}^{#2}}              % Quantity of reference #2 produced at period #1
+\newcommand\aleaQuantityPR[2]{\va{q}_{#1}^{#2}}     % Quantity of reference #2 produced at period #1 (random version)
+\newcommand\stockPR[2]{s_{#1}^{#2}}                 % Stock of reference #2 at the end of period #1
+\newcommand\aleaStockPR[2]{\va{s}_{#1}^{#2}}        % Stock of reference #2 at the end of period #1 (random version)
+\newcommand\stockSecuR[1]{s_{\mathrm{min}}^{#1}}    % Security stock of the reference #1
+
+% Set of possible patterns of references that can be produced at period #2
+% If #1 is nonempty, it designed the subset of possible pattern containing the references #1
+\newcommand\RefPattern[2][]{\cP_{#2}^{#1}}
+
+% Boolean variable. 1 if the pattern #1 is chosen at period #2 and 0 otherwise
+\newcommand\PatternChoice[2]{y_{#1,#2}}
+
+
+
+% PP modeling
+\newcommand\horizon{T}              % Number of periods
+\newcommand\demand{d}               % Demand in reference #2 at period #1
+\newcommand\holding{h}              % holding cost of reference #2 at the end of period #1
+\newcommand\capacity{C}             % Capacity of the assembly line
+\newcommand\rate{v}                 % Capacity needed for assembly line to produce one unit of reference
+                                    % = throughput of the line
+\newcommand\nbsetups{N}             % Total number of setups of the line
+\newcommand\setup{x}                % 1 if reference is producted at period and 0 otherwise
+\newcommand\quantity{q}             % Quantity of reference produced at period
+\newcommand\inventory{s}            % Inventory of reference at the end of period (may be negative)
+\newcommand\backlog{b}              % Backlog quantity of reference at end of period
+\newcommand\excess{\tilde{s}}       % Excess of inventory of reference at the end of period
+\newcommand\safety{s_{\mathrm{min}}}% Safety stock of the reference
+\newcommand\delay{\gamma}           % Penalization of the backlog inventory
+\newcommand\lag{\tau}               % Number of periods for which decisions are fixed
+\newcommand\scenarios{\Omega}       % Set of scenarios
+
+
+% Strategic modeling
+\newcommand\plants{\cP}       % Set of plants
+%          \capacity          % Capacity on the factory (see PP modeling notations)
+\newcommand\capital{K}        % Available capital to invest in flexible production capacities
+%          \delay             % Cost of the undelivered command (see PP modeling notations)
+\newcommand\affect{c}         % Cost for assigning the capacity of production to a factory
+\newcommand\produce{p}        % Cost for producing one unit of a reference
+%          \demand            % Demand for a reference (see PP modeling notations)
+%          \inventory         % Inventory of reference (may be negative) (see PP modeling notations)
+%          \backlog           % Backlog quantity of reference (see PP modeling notations)
+%          \excess            % Excess of inventory of reference (see PP modeling notations)
+%          \quantity          % Quantity of reference produced at period (see PP modeling notations)
+\newcommand\open{y}           % 1 if factory can produce reference and 0 otherwise
+%\newcommand\open{z}           % 1 if factory got the ability to produce during previous period and 0 otherwise
+\newcommand\servicelvl{\beta} % Service shortage (1 - service level)

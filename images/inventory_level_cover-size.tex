@@ -1,0 +1,22 @@
+\begin{tikzpicture}[font=\scriptsize]
+
+  \begin{scope}[local bounding box=StockLevel, scale=.5]
+  % Aire courbe
+  \fill[color=argon gray!20] (0,0) -- (0,2) -- (3,0) -- cycle;
+  \draw[-angle 60, color=argon gray] (2,3) node[anchor=west] {$\bar{s}_r=\frac{1}{2} d_r T_r^2$} -- (1,.75);
+
+
+  % Axe x
+  \draw[-angle 60] (0,0) -- (7.5,0) node[right] {time};
+  % Axe y
+  \draw[-angle 60] (0,-.2) --  node[sloped, anchor=center, above=.2cm, midway] {inventory level} (0,3);
+  \draw[dashed] (0,0) -- (0,-.4);
+
+  % Courbe
+  \draw[argon orange] (0,0) -- (0,2) -- (3,0) node[below, black] {$T_r$} -- (3,2) -- node[sloped, anchor=center, above, midway, color=black] {\textcolor{argon gray}{$-d_r$}} (6,0) node[below, black] {$2T_r$} -- (6,2) -- (7,{4/3});
+
+  \draw[<->] (0,-.5) -- node[sloped, anchor=north, midway]{cover-size} (2.6,-.5);
+  \draw[<->] (6.5,0) -- node[anchor=west, midway]{lot-size} (6.5,2);
+  \end{scope}
+
+\end{tikzpicture}

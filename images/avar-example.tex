@@ -1,0 +1,18 @@
+\begin{tikzpicture}[font=\small]
+
+  \newcommand*{\abscissa}{-1.}%
+  \pgfmathsetmacro{\ordinate}{6*1/(sqrt(2*pi))*exp(-((\abscissa-1)^2)/4}%
+
+  \begin{scope}[local bounding box=AVaRShift, yscale=.75]
+    % Fill average area
+    \fill[color=red!20] (-1,0) -- plot[domain=-1:1,smooth,variable=\x,samples=100] ({\x},{6*1/(sqrt(2*pi))*exp(-((\x-3)^2)/4)}) -- (1,0) -- cycle;
+
+    \draw[->] (-1,0) -- (7,0) node[right] {$\va\inventory_t^i$};
+    \draw[->] (0,-.2) -- (0,3) node[above, anchor=south] {density of $\va\inventory_t^i$};
+    \draw[domain=-1:7,smooth,variable=\x,argon orange] plot ({\x},{6*1/(sqrt(2*pi))*exp(-((\x-3)^2)/4)});
+
+    \draw[thick, argon gray, dashed] (1,-.2) -- (1,2) node [anchor=210] {$q_{5\%}^+(\va\inventory_t^i)$};
+    \draw[thick, red, dashed] (.5,-.4) node [anchor=175] {Mean over the $5\%$ worst cases $\ge 0$ \textcolor{black}{$\implies$ Inventory policy is not too risky}} -- (.5,1.8);
+  \end{scope}
+
+\end{tikzpicture}

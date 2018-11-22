@@ -1,0 +1,17 @@
+\begin{tikzpicture}[font=\footnotesize]
+
+  \begin{scope}[local bounding box=Gaussian, scale=.5]
+    % Fill infeasible area
+    \fill[color=red!20] (3,0) -- plot[domain=3:5,smooth,variable=\x,samples=100] ({\x},{6*1/(sqrt(2*pi))*exp(-((\x-2)^2)/2)}) -- (5,0) -- cycle;
+    \draw[-angle 60, color=red] (4,2) node[anchor=west] {infeasible region} -- (3.5,.3);
+
+
+    \draw[->] (0,0) -- (5,0) node[right] {demand};
+    \draw[->] (0,0) -- (0,3) node[above, anchor=190] {probability of realization};
+    \draw[domain=0:5,smooth,variable=\x,argon orange] plot ({\x},{6*1/(sqrt(2*pi))*exp(-((\x-2)^2)/2)});
+
+    \draw[argon gray, dashed] (2,-.4) node[below, anchor=north east] {forecast} -- (2,2.7);
+    \draw[red] (3,-.4) node[below, anchor=north west] {capacity} -- (3,2.7);
+  \end{scope}
+
+\end{tikzpicture}

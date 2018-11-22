@@ -1,0 +1,30 @@
+\begin{tikzpicture}[font=\scriptsize]
+  \begin{scope}[local bounding box=graph, scale=1.]
+    \begin{axis}[width=6cm, height=6cm,
+                 legend entries={2SA-$m$,Det.,Lot-size},
+                 legend columns={3},
+                 legend cell align={left},
+                 legend style={at={(.5,1)},
+                               anchor=south,
+                               font=\scriptsize,
+                               /tikz/column 2/.style={column sep=8pt,},
+                               /tikz/column 4/.style={column sep=8pt,},
+                               /tikz/column 6/.style={column sep=8pt,},
+                 },
+                 xtick={85,90,95,100}, xticklabels={85,90,95,100},
+                 xlabel={Fill rate service level (in \%)},
+                 xmin=85, xmax=100,
+                 %xmode = log, % logarithmic x axis
+                 ytick={0,2,4,6,8,10}, %yticklabels={1e+06,5e+06,1e+07},
+                 ylabel={Holding costs (in M\euro)}, scaled y ticks = false, ylabel near ticks,
+                 ymin=0, ymax=11
+                 ]
+    % Two-stage stochastic
+    \DrawCloud[argon orange]{images/simul_line-2_quarter-1_pastcor-025_volatility-020.csv}{2SS}
+    % Deterministic
+    \DrawCloud[argon orange!40]{images/simul_line-2_quarter-1_pastcor-025_volatility-020.csv}{Det}
+    % Lot-size
+    \DrawCloud[argon gray!50]{images/simul_line-2_quarter-1_pastcor-025_volatility-020.csv}{lot_size}
+    \end{axis}
+  \end{scope}
+\end{tikzpicture}

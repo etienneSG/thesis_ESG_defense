@@ -1,0 +1,24 @@
+\begin{tikzpicture}[font=\small]
+
+  \newcommand*{\abscissa}{-1.}%
+  \pgfmathsetmacro{\ordinate}{6*1/(sqrt(2*pi))*exp(-((\abscissa-1)^2)/4}%
+
+  \begin{scope}[local bounding box=VaR, scale=.8]
+
+    \draw[->] (-3,0) -- (5,0) node[right] {$X$};
+    \draw[->] (0,-.2) -- (0,3) node[above, anchor=190] {density of $X$};
+    \draw[domain=-3:5,smooth,variable=\x,argon orange] plot ({\x},{6*1/(sqrt(2*pi))*exp(-((\x-1)^2)/4)});
+
+    \draw[argon gray, dashed] (-1,-.2) node[below, anchor=90] {$q_{5\%}^+\bracket{X}$} -- (-1,\ordinate);
+    \draw[red, dashed] (1,-.2) node[below, anchor=150] {$\var_{5\%}\bracket{X}$} -- (1,\ordinate);
+
+    \draw[<->,argon gray] (-1,\ordinate) -- (-.05,\ordinate);
+    \draw[argon gray] (-.5,\ordinate+.1) -- (-.55,\ordinate-.1);
+    \draw[argon gray] (-.5,\ordinate-.1) -- (-.45,\ordinate+.1);
+
+    \draw[<->,argon gray] (.05,\ordinate) -- (1,\ordinate);
+    \draw[argon gray] (.5,\ordinate-.1) -- (.55,\ordinate+.1);
+    \draw[argon gray] (.5,\ordinate+.1) -- (.45,\ordinate-.1);
+  \end{scope}
+
+\end{tikzpicture}

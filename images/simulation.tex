@@ -1,0 +1,71 @@
+\begin{tikzpicture}[font=\normalsize]
+
+  \begin{scope}[local bounding box=Simulation, scale=1.]
+  % Simulator box
+  \fill[argon gray!20] (0,0) rectangle (6.75,6.5);
+  \draw[argon gray] (0,0) rectangle node[anchor=center]
+  {
+    \begin{minipage}{6.5cm}
+      \begin{center}\huge \textcolor{argon gray}{Simulator}\end{center}
+      \begin{itemize}
+        \item Start at week $t=0$
+        \item For each week t\\
+        \begin{tikzpicture}
+          \begin{scope}[local bounding box=time_scale, scale=.75]
+            % Time
+            \fill[white] (2,.5) rectangle (5,1);
+            \draw[step=.5, argon gray] (2,.5) grid (5,1);
+            \draw[argon gray] (2,.5) -- node[anchor=center, left] {time} (2,1);
+            % Past time
+            \draw[argon orange] (2,.75) -- (2.25,1);
+            \foreach \x in {2,2.25,...,3} \draw[argon orange] (\x,.5) -- ({\x+.5},1);
+            \draw[argon orange] (3.25,.5) -- (3.5,.75);
+            \draw[argon orange] (2.75,1) node[anchor=south, font=\footnotesize] {past};
+            % Current time
+            \draw[black, line width=1pt, ->, -angle 60, font=\footnotesize] (3.75,1.5) node[anchor=south] {current} -- (3.75,1);
+          \end{scope}
+        \end{tikzpicture}
+        \begin{itemize}
+          \item Observe inventory level
+          \item Use heuristic and forecast to compute the production planning
+          \item Decide production for current week
+        \end{itemize}
+        \item Return KPI
+      \end{itemize}
+    \end{minipage}
+  }
+  (6.75,6.5);
+
+
+
+  % Input
+  \node[argon gray, anchor=west] (strategy) at (-2,5) {Heuristic};
+  \draw[argon gray, line width=1pt, ->, -angle 60] (strategy.east) -- (0,5);
+  \node[argon gray, anchor=west] (forecast) at (-2,4) {Forecast};
+  \draw[argon gray, line width=1pt, ->, -angle 60] (forecast.east) -- (0,4);
+  \node[argon gray, anchor=west] (data) at (-2,3) {Data};
+  \draw[argon gray, line width=1pt, ->, -angle 60] (data.east) -- (0,3);
+
+  \node[argon gray, anchor=north] (demand) at (3.5,7.5) {Demand realization};
+  \draw[argon gray, line width=1pt, ->, -angle 60] (demand.south) -- (3.5,6.5);
+
+  % Output
+  \node[argon gray, anchor=west] (output) at (7.5,5) {\begin{minipage}{2.75cm}Key Performance Indicators\end{minipage}};
+  \node[argon gray, anchor=north west, font=\footnotesize] at (output.south west)
+  {
+    \begin{minipage}{3cm}
+        \begin{itemize}
+          \item \textcolor{argon gray}{Objective function}
+          \item \textcolor{argon gray}{Holding costs}
+          \item \textcolor{argon gray}{Backorder costs}
+          \item \textcolor{argon gray}{Cycle service level}
+          \item \textcolor{argon gray}{Fill rate service level}
+          \item \textcolor{argon gray}{\ldots}
+        \end{itemize}
+    \end{minipage}
+  };
+  \draw[argon gray, line width=1pt, ->, -angle 60] (6.75,5) -- (output.west);
+
+  \end{scope}
+
+\end{tikzpicture}

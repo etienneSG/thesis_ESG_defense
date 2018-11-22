@@ -1,0 +1,59 @@
+\begin{tikzpicture}[font=\small]
+
+  \newcommand*{\abscissa}{-1.}%
+  \pgfmathsetmacro{\ordinate}{6*1/(sqrt(2*pi))*exp(-((\abscissa-1)^2)/4}%
+
+  \node (BeforeShift)
+  {
+    \begin{tikzpicture}[font=\small]
+      \begin{scope}[local bounding box=AVaRconstr, xscale=.8, yscale=.6]
+        % Fill average area
+        \fill[color=red!20] (-3,0) -- plot[domain=-3:-1,smooth,variable=\x,samples=100] ({\x},{6*1/(sqrt(2*pi))*exp(-((\x-1)^2)/4)}) -- (-1,0) -- cycle;
+
+        \draw[->] (-3,0) -- (7,0) node[right] {$\va\inventory_t^i$};
+        \draw[->] (0,-.2) -- (0,3) node[above, anchor=-10] {density of $\va\inventory_t^i$};
+        \draw[domain=-3:7,smooth,variable=\x,argon orange] plot ({\x},{6*1/(sqrt(2*pi))*exp(-((\x-1)^2)/4)});
+
+        \draw[argon gray, dashed] (-1.5,-.2) -- (-1.5,{1+\ordinate});
+        \draw[red, dashed] (1.5,-.2) node[below, anchor=160] {$\avar_{5\%}\bracket{\va\inventory_t^i}$} -- (1.5,{1.+\ordinate});
+
+        \draw[<->,argon gray] (-1.5,\ordinate+.65) -- (-.05,\ordinate+.65);
+        \draw[argon gray] (-.75,\ordinate+.75) -- (-.8,\ordinate+.55);
+        \draw[argon gray] (-.75,\ordinate+.55) -- (-.7,\ordinate+.75);
+
+        \draw[<->,argon gray] (.05,\ordinate+.65) -- (1.5,\ordinate+.65);
+        \draw[argon gray] (.75,\ordinate+.55) -- (.8,\ordinate+.75);
+        \draw[argon gray] (.75,\ordinate+.75) -- (.7,\ordinate+.55);
+      \end{scope}
+    \end{tikzpicture}
+  };
+
+  \node (AfterShift) [at=(BeforeShift.south), anchor=north]
+  {
+    \begin{tikzpicture}[font=\small]
+      \begin{scope}[local bounding box=AVaRShift, xscale=.8, yscale=.6]
+        % Fill average area
+        \fill[color=red!20] (-3,0) -- plot[domain=-3:1,smooth,variable=\x,samples=100] ({\x},{6*1/(sqrt(2*pi))*exp(-((\x-3)^2)/4)}) -- (1,0) -- cycle;
+
+        \draw[->] (-3,0) -- (7,0) node[right] {$\va\inventory_t^i$};
+        \draw[->] (0,-.2) -- (0,3) node[above, anchor=-10] {density of $\va\inventory_t^i$};
+        \draw[domain=-3:7,smooth,variable=\x,argon orange] plot ({\x},{6*1/(sqrt(2*pi))*exp(-((\x-3)^2)/4)});
+
+        \draw[argon gray, dashed] (.5,-.2) -- (.5,{1+\ordinate});
+        \draw[red, dashed] (-.5,-.2) node[below, anchor=20] {$\avar_{5\%}\bracket{\va\inventory_t^i}$} -- (-.5,{1.+\ordinate});
+
+        \draw[<->,argon gray] (.5,\ordinate+.65) -- (.05,\ordinate+.65);
+        %\draw[argon gray] (.25,\ordinate+.55) -- (.3,\ordinate+.75);
+        %\draw[argon gray] (.25,\ordinate+.75) -- (.2,\ordinate+.55);
+
+        \draw[<->,argon gray] (-.05,\ordinate+.65) -- (-.5,\ordinate+.65);
+        %\draw[argon gray] (-.25,\ordinate+.75) -- (-.3,\ordinate+.55);
+        %\draw[argon gray] (-.25,\ordinate+.55) -- (-.2,\ordinate+.75);
+
+        % Shift arrow
+        \draw[argon orange!60, fill=argon orange!60] (1,3.5) -- (2.5,3.5) -- (2.5,3.75) -- (3,3.25) -- (2.5,2.75) -- (2.5,3) -- (1,3) -- cycle;
+      \end{scope}
+    \end{tikzpicture}
+  };
+
+\end{tikzpicture}
