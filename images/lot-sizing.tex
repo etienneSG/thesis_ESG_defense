@@ -1,0 +1,16 @@
+\begin{tikzpicture}[font=\footnotesize]
+
+  \begin{scope}[local bounding box=StockLevel, scale=.5]
+    % Axe x
+    \draw[-angle 60] (-0.2,0) -- (6,0) node[right] {time};
+    % Axe y
+    \draw[-angle 60] (0,-0.2) -- (0,3) node[anchor=south] {Inventory};
+
+    % Courbe
+    \draw[orange, font=\scriptsize, -] (0,0) -- (0,2) --  (2.5,0) -- (2.5,2) -- (5,0) -- (5,2) -- (6,{2-2/2.5});
+
+    \draw[latex-latex] (-.3,0) -- node[sloped,above]{lot} (-.3,2);
+    \draw[latex-latex] (0,-.3) -- node[sloped,below]{cover} (2.5,-.3);
+  \end{scope}
+
+\end{tikzpicture}

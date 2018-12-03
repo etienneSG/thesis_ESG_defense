@@ -1,0 +1,38 @@
+\begin{tikzpicture}[font=\scriptsize]
+
+\newcommand{\factory}[2][factory]{%
+\begin{scope}[shift={(#2)},local bounding box=#1, scale=.4]%
+  \draw[line width=1] (0,0) rectangle (2,1.5);%
+  \draw (.5,0) rectangle (1,.75) rectangle (1.5,0);%
+  \draw[line width=1] (2,0) -- (4,0) -- (4,1.5) -- (3,1) -- (3,1.5) -- (2,1) -- cycle;%
+  \draw (2.2,.3) rectangle (2.9,.75);%
+  \draw (3.1,.3) rectangle (3.8,.75);%
+\end{scope}%
+}%
+
+
+\pgfmathsetmacro{\entrepotright}{3}%
+\pgfmathsetmacro{\entrepotleft}{4.6}%
+\pgfmathsetmacro{\entrepotheight}{.6}%
+
+\begin{scope}[local bounding box=factory, scale=.7]
+  \factory[factoryA]{0,2}
+  \factory[factoryB]{0,.5}
+
+  \draw (\entrepotright,2.4) rectangle node[anchor=mid,argon orange]{item A} (\entrepotleft,{2.4+\entrepotheight});
+  \draw[-latex, argon orange] ($(factoryA.east)+(.1,.25)$) -- (\entrepotright,{2.4+.5*\entrepotheight});
+
+  \draw (\entrepotright,1.6) rectangle node[anchor=mid,argon orange!50]{item B} (\entrepotleft,{1.6+\entrepotheight});
+  \draw[-latex, argon orange!50] ($(factoryA.east)+(.1,0)$) -- (\entrepotright,{1.6+.6*\entrepotheight});
+  \draw[-latex, argon orange!50] ($(factoryB.east)+(.1,.25)$) -- (\entrepotright,{1.6+.4*\entrepotheight});
+
+  \draw (\entrepotright,.8) rectangle node[anchor=mid,argon gray!50]{item C} (\entrepotleft,{.8+\entrepotheight});
+  \draw[-latex, argon gray!50] ($(factoryA.east)+(.1,-.25)$) -- (\entrepotright,{.8+.6*\entrepotheight});
+  \draw[-latex, argon gray!50] ($(factoryB.east)+(.1,0)$) -- (\entrepotright,{.8+.4*\entrepotheight});
+
+  \draw (\entrepotright,0) rectangle node[anchor=mid,argon gray]{item D} (\entrepotleft,{0+\entrepotheight});
+  \draw[-latex, argon gray] ($(factoryB.east)+(.1,-.25)$) -- (\entrepotright,{0+.5*\entrepotheight});
+
+\end{scope}
+
+\end{tikzpicture}

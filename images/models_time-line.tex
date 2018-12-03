@@ -1,0 +1,65 @@
+\begin{tikzpicture}[font=\small]
+  
+  \pgfmathsetmacro{\timelineup}{5.1}%
+  \pgfmathsetmacro{\timelinedown}{4.1}%
+  \pgfmathsetmacro{\timelineleft}{0.5}%
+  \pgfmathsetmacro{\timelineright}{11.5}%
+  \pgfmathsetmacro{\timelinearrow}{0.5}%
+
+
+  \pgfmathsetmacro{\capacity}{1.75}%
+  \pgfmathsetmacro{\multisourcing}{3}%
+  \pgfmathsetmacro{\lotsizing}{5}%
+  \pgfmathsetmacro{\pdp}{7.5}%
+  \pgfmathsetmacro{\scheduling}{10}%
+
+
+  \pgfmathsetmacro{\legend}{3.25}%
+
+
+  \begin{scope}[local bounding box=VaR, scale=1.]
+
+  \draw (0,0);
+
+  % Time line
+  \shade[left color=argon orange, right color=argon orange!25]
+    (\timelineleft,\timelineup) --
+    (\timelineright,\timelineup) --
+    ({\timelineright+\timelinearrow},{.5*(\timelineup+\timelinedown)}) --
+    (\timelineright,\timelinedown) --
+    (\timelineleft,\timelinedown) --
+    ({\timelineleft+\timelinearrow},{.5*(\timelineup+\timelinedown)}) --
+    cycle;
+  \draw (\timelineleft,{{.5*(\timelineup+\timelinedown)}}) node[rotate=90, anchor=south]{Long term};
+  \draw ({\timelineright+\timelinearrow},{{.5*(\timelineup+\timelinedown)}}) node[rotate=90, anchor=north]{Short term};
+
+
+  % Decision level
+  \draw (\capacity,{.5*(\timelineup+\timelinedown)}) node[anchor=center]{Strategic};
+  \draw (\lotsizing,{.5*(\timelineup+\timelinedown)}) node[anchor=center]{\phantom{p}Tactical\phantom{p}};
+  \draw (\pdp,{.5*(\timelineup+\timelinedown)}) node[anchor=west]{Operational};
+  \draw (\scheduling,{.5*(\timelineup+\timelinedown)}) node[anchor=west]{Execution\phantom{p}};
+
+
+  % Capacity-sizing decision
+  \draw[-latex] (\capacity,{\timelineup+\legend}) node[anchor=north west, inner sep=2pt]{\textbf{Capacity sizing}} -- (\capacity,\timelineup);
+
+
+  % Multi-sourcing decision
+  \draw[-latex] (\multisourcing,{\timelinedown-\legend}) node[anchor=south west, inner sep=2pt]{\begin{minipage}{5cm}\input{images/multi-sourcing.tex}\\\textbf{Multi-sourcing} (Part \uppercase\expandafter{\romannumeral 3})\end{minipage}} -- (\multisourcing,\timelinedown);
+
+
+  % Lot-sizing decision
+  \draw[-latex] (\lotsizing,{\timelineup+\legend}) node[anchor=north west, inner sep=2pt]{\begin{minipage}{4.5cm}\textbf{Lot sizing} (Part \uppercase\expandafter{\romannumeral 1})\\\input{images/lot-sizing.tex}\end{minipage}} -- (\lotsizing,\timelineup);
+
+
+  % Production planning decision
+  \draw[-latex] (\pdp,{\timelinedown-\legend}) node[anchor=south west, inner sep=2pt]{\begin{minipage}{4.5cm}\input{images/pdp.tex}\\\textbf{Production planning} (Part \uppercase\expandafter{\romannumeral 2})\end{minipage}} -- (\pdp,\timelinedown);
+
+
+  % Scheduling decision
+  \draw[-latex] (\scheduling,{\timelineup+\legend}) node[anchor=north west, inner sep=2pt]{\textbf{Scheduling}} -- (\scheduling,\timelineup);
+
+  \end{scope}
+
+\end{tikzpicture}

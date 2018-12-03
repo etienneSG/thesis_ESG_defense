@@ -1,0 +1,42 @@
+\begin{tikzpicture}[font=\scriptsize]
+
+
+\pgfmathsetmacro{\week}{.5}%
+\pgfmathsetmacro{\weeks}{5}%
+\pgfmathsetmacro{\capacity}{1.25}%
+
+\tikzstyle{prodA} = [fill=\maincolor]
+\tikzstyle{prodB} = [fill=\maincolor!50]
+\tikzstyle{prodC} = [fill=\secondcolor!50]
+\tikzstyle{prodD} = [fill=\secondcolor]
+
+\begin{scope}[local bounding box=PDP, scale=1]
+  \draw[prodB] (0,0) rectangle (\week,\capacity);
+  \draw[prodA] (0,0) rectangle (\week,{.7*\capacity});
+
+  \draw[prodD] ({1*\week},0) rectangle ({2*\week},\capacity);
+  \draw[prodC] ({1*\week},0) rectangle ({2*\week},{.6*\capacity});
+
+  \draw[prodC] ({2*\week},0) rectangle ({3*\week},{.9*\capacity});
+  \draw[prodA] ({2*\week},0) rectangle ({3*\week},{.3*\capacity});
+
+  \draw[prodB] ({3*\week},0) rectangle ({4*\week},\capacity);
+  \draw[prodA] ({3*\week},0) rectangle ({4*\week},{.4*\capacity});
+
+  \draw[prodD] ({4*\week},0) rectangle ({5*\week},{.8*\capacity});
+  \draw[prodC] ({4*\week},0) rectangle ({5*\week},{.6*\capacity});
+
+  \foreach \w in {1,2,...,\weeks} \node[anchor=south] (week\w) at ({(\w-.5)*\week},\capacity) {\w};
+  \node[anchor=south] (periods) at (week3.north) {Periods};
+  \foreach \x in {0,1,...,\weeks} \draw[-] ({\x*\week},0) -- ({\x*\week},\capacity);
+  \draw (0,0) rectangle ({\week*\weeks},\capacity);
+
+  \draw[latex-latex] ({-.5*\week},0) -- node[sloped, anchor=south]{Capacity} ({-.5*\week},\capacity);
+
+  \draw[prodD] ({(\weeks+1)*\week},{.125*\capacity}) rectangle node[inner sep=.25cm,anchor=west] {D} ({(\weeks+1.5)*\week},0);
+  \draw[prodC] ({(\weeks+1)*\week},{.375*\capacity}) rectangle node[inner sep=.25cm,anchor=west] {C} ({(\weeks+1.5)*\week},{.250*\capacity});
+  \draw[prodB] ({(\weeks+1)*\week},{.625*\capacity}) rectangle node[inner sep=.25cm,anchor=west] {B} ({(\weeks+1.5)*\week},{.500*\capacity});
+  \draw[prodA] ({(\weeks+1)*\week},{.875*\capacity}) rectangle node[inner sep=.25cm,anchor=west] {A} ({(\weeks+1.5)*\week},{.750*\capacity});
+\end{scope}
+
+\end{tikzpicture}
