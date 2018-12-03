@@ -1,0 +1,30 @@
+\begin{tikzpicture}[font=\footnotesize]
+
+  \newcommand{\longcampain}[3][black]{\draw[#1] (#2,#3) -- ({#2+1.5},{#3+4}) -- ({#2+5.5},#3)}%
+ 
+  \newcommand{\optimalcampain}[3][black]{\draw[#1] (#2,#3) -- ({#2+4/3},{#3+40/15}) -- ({#2+20/3},#3)}%
+  \pgfmathsetmacro{\ordinateoptimal}{-13.7}%
+
+
+  \begin{scope}[local bounding box=VaR, scale=.3]
+
+    % Optimal campain
+    \draw[->,argon gray] (-.3,\ordinateoptimal) -- (20,\ordinateoptimal) node[right] {time};
+    \draw[->,argon gray] (0,{\ordinateoptimal-.2}) -- (0,{\ordinateoptimal+4.5}) node[above, anchor=south] {inventory};
+
+    \foreach \x in {0,6.666666,...,15} \optimalcampain[argon gray]{\x}{\ordinateoptimal};
+
+    \draw[white] (5.5,\ordinateoptimal) -- node[midway, anchor=south, argon orange, sloped]{$\rate_i-\demand_i$} (7,{\ordinateoptimal+4}) -- node[midway, anchor=south, argon orange, sloped]{$\demand_i$} (11,\ordinateoptimal);
+
+    \foreach \x in {0,5.5,...,16} \longcampain[argon orange]{\x}{\ordinateoptimal};
+    \draw[argon orange] (16.5,\ordinateoptimal) -- ({16.5+1.5},{\ordinateoptimal+4}) -- (20,{\ordinateoptimal+2});
+
+    \draw[latex-latex, argon orange] (5.5,{\ordinateoptimal-.5}) -- node[midway, anchor=north]{cover-size $\cover_i$} (11,{\ordinateoptimal-.5});
+
+    \draw[dashed, argon gray!75] (0,{\ordinateoptimal}) -- (0,{\ordinateoptimal-2});
+    \draw[dashed, argon gray!75] (18,{\ordinateoptimal}) -- (18,{\ordinateoptimal-2});
+    \draw[latex-latex] (0,{\ordinateoptimal-2}) -- node[midway, anchor=north]{$N$ setups} (18,{\ordinateoptimal-2});
+
+  \end{scope}
+  
+\end{tikzpicture}

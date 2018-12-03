@@ -1,13 +1,15 @@
 \begin{tikzpicture}[font=\small]
   
   \pgfmathsetmacro{\xstart}{-1.5}%
-  \pgfmathsetmacro{\xend}{13}%
+  \pgfmathsetmacro{\xend}{10}%
 
   \pgfmathsetmacro{\prodA}{0}%
-  \pgfmathsetmacro{\prodB}{3}%
-  \pgfmathsetmacro{\plantA}{8}%
-  \pgfmathsetmacro{\plantB}{11}%
+  \pgfmathsetmacro{\prodB}{2.25}%
+  \pgfmathsetmacro{\plantA}{6}%
+  \pgfmathsetmacro{\plantB}{8.25}%
 
+  \pgfmathsetmacro{\assignment}{-2}%
+  \pgfmathsetmacro{\arrow}{-.5}%
   \pgfmathsetmacro{\ground}{0}%
   \pgfmathsetmacro{\lvlA}{3}%
   \pgfmathsetmacro{\lvlB}{4.5}%
@@ -23,16 +25,16 @@
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % item
-    \draw ({.5*(\prodA+\prodB+1)},{\capa+2}) node [anchor=south, font=\normalsize] {Items};
+    \draw ({.5*(\prodA+\prodB+1)},{\capa+2}) node [anchor=south, font=\normalsize] {Demands};
 
     % item PA
-    \draw [fill=argon orange] (\prodA,0) -- ({\prodA+1},0) -- ({\prodA+1},\lvlA) -- (\prodA,\lvlA) -- cycle;
+    \draw [fill=argon orange] (\prodA,0) -- node[anchor=north]{\textcolor{argon orange}{\scriptsize item O}} ({\prodA+1},0) -- ({\prodA+1},\lvlA) -- (\prodA,\lvlA) -- cycle;
     \draw [->] ({\prodA-.5},\lvlA) -- ({\prodA-.5},{\lvlA+2.5}) node [midway, left, fill=white] {+50};
     \draw [->] ({\prodA-.5},\lvlA) -- ({\prodA-.5},{\lvlA-1.5}) node [midway, left, fill=white] {-30};
     \draw [argon orange, fill=argon orange] ({\prodA-.5},\lvlA) node [left, argon orange, fill=white] {60} circle (.05);
 
     % item PB
-    \draw [fill=cyan] (\prodB,0) -- ({\prodB+1},0) -- ({\prodB+1},\lvlB) -- (\prodB,\lvlB) -- cycle;
+    \draw [fill=cyan] (\prodB,0) -- node[anchor=north]{\textcolor{cyan}{\scriptsize item B}} ({\prodB+1},0) -- ({\prodB+1},\lvlB) -- (\prodB,\lvlB) -- cycle;
     \draw [->] ({\prodB-.5},\lvlB) -- ({\prodB-.5},{\lvlB+2}) node [midway, left, fill=white] {+40};
     \draw [->] ({\prodB-.5},\lvlB) -- ({\prodB-.5},{\lvlB-1}) node [midway, left, fill=white] {-20};
     \draw [cyan, fill=cyan] ({\prodB-.5},\lvlB) node [left, cyan, fill=white] {90} circle (.05);
@@ -40,51 +42,55 @@
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % plants
-    \draw ({.5*(\plantA+\plantB+1)},{\capa+2}) node [anchor=south, font=\normalsize] {Plants};
+    \draw ({.5*(\plantA+\plantB+1)},{\capa+2}) node [anchor=south, font=\normalsize] {Capacities};
 
     % plants PA
-    \draw [fill=white] (\plantA,0) -- ({\plantA+1},0) -- ({\plantA+1},\capa) -- (\plantA,\capa) -- cycle;
+    \draw [fill=white] (\plantA,0) -- node[anchor=north]{\scriptsize plant 1} ({\plantA+1},0) -- ({\plantA+1},\capa) -- (\plantA,\capa) -- cycle;
 
     % plants PB
-    \draw [fill=white] (\plantB,0) -- ({\plantB+1},0) -- ({\plantB+1},\capa) -- (\plantB,\capa) -- cycle;
+    \draw [fill=white] (\plantB,0) -- node[anchor=north]{\scriptsize plant 2} ({\plantB+1},0) -- ({\plantB+1},\capa) -- (\plantB,\capa) -- cycle;
 
 
     % item A
     \visible<2-> {
-      \draw[thick, argon orange, -latex] ({\prodA+.5}, 0) arc (180:360:{.5*(\plantB+.25-\prodA)} and 1.25);
+      \draw[thick, argon orange, -latex] ({\prodA+.5}, \arrow) arc (180:360:{.5*(\plantB+.25-\prodA)} and 1.25);
     }
     \visible<3> {
-      \draw[thick, argon orange, -latex] ({\prodA+.5}, 0) arc (180:360:{.5*(\plantA+.25-\prodA)} and .9);
+      \draw[thick, argon orange, -latex] ({\prodA+.5}, \arrow) arc (180:360:{.5*(\plantA+.25-\prodA)} and .9);
     }
 
     % item B
     \visible<2-> {
-      \draw[thick, cyan, -latex] ({\prodB+.5}, 0) arc (180:360:{.5*(\plantA-.25-\prodB)} and .5);
+      \draw[thick, cyan, -latex] ({\prodB+.5}, \arrow) arc (180:360:{.5*(\plantA-.25-\prodB)} and .5);
     }
     \visible<3-> {
-      \draw[thick, cyan, -latex] ({\prodB+.5}, 0) arc (180:360:{.5*(\plantB-.25-\prodB)} and .9);
+      \draw[thick, cyan, -latex] ({\prodB+.5}, \arrow) arc (180:360:{.5*(\plantB-.25-\prodB)} and .9);
     }
 
 
     \visible<1>
     {
-      \draw ({.5*(\xstart+\xend)},{\ground-1.5}) node [anchor=north, font=\normalsize] {Which plants can produce each item?};
+      \draw ({.5*(\prodA+\plantB+1)},{\assignment}) node [anchor=north, font=\normalsize] {Which plants can produce each item?};
     }
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Service level
+    % \draw[thick, -latex] (\xservicelvl,{\xservicelvl+\servicelvllength+.5})
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Assignment
-    \visible<2->
-    {
-      \draw ({.5*(\plantA+\plantB+1)},{\capa+1.1}) node [anchor=south, font=\normalsize] {can produce};
-    }
+    % \visible<2->
+    % {
+    %   \draw ({.5*(\plantA+\plantB+1)},{\capa+1.1}) node [anchor=south, font=\normalsize] {can produce};
+    % }
 
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Assignment using expectation
     \visible<2>
     {
-      \draw ({.5*(\xstart+\xend)},{\ground-1.5}) node [anchor=north, font=\normalsize] {Assignment using expectation};
+      \draw ({.5*(\prodA+\plantB+1)},{\assignment}) node [anchor=north, font=\normalsize] {Assignment using expectation};
 
       \draw ({\plantA+.5)},{\capa+.2}) node [anchor=south, font=\normalsize] {\textcolor{cyan}{B}\phantom{\&\textcolor{argon orange}{O}}};
       \draw ({\plantB+.5)},{\capa+.2}) node [anchor=south, font=\normalsize] {\phantom{\textcolor{cyan}{B}\&}\textcolor{argon orange}{O}};
@@ -104,7 +110,7 @@
     % Robust assignment
     \visible<3>
     {
-      \draw ({.5*(\xstart+\xend)},{\ground-1.5}) node [anchor=north, font=\normalsize] {Robust assignment};
+      \draw ({.5*(\prodA+\plantB+1)},{\assignment}) node [anchor=north, font=\normalsize] {Robust assignment};
 
       \draw ({\plantA+.5)},{\capa+.2}) node [anchor=south, font=\normalsize] {\textcolor{cyan}{B}\&\textcolor{argon orange}{O}};
       \draw ({\plantB+.5)},{\capa+.2}) node [anchor=south, font=\normalsize] {\textcolor{cyan}{B}\&\textcolor{argon orange}{O}};
@@ -122,11 +128,14 @@
     % Reasonable assignment
     \visible<4>
     {
-      \draw ({.5*(\xstart+\xend)},{\ground-1.5}) node [anchor=north, font=\normalsize] {``Reasonable'' assignment};
+      \draw ({.5*(\prodA+\plantB+1)},{\assignment}) node [anchor=north, font=\normalsize] {``Reasonable'' assignment};
 
       \draw ({\plantA+.5)},{\capa+.2}) node [anchor=south, font=\normalsize] {\textcolor{cyan}{B}\phantom{\&\textcolor{argon orange}{O}}};
       \draw ({\plantB+.5)},{\capa+.2}) node [anchor=south, font=\normalsize] {\textcolor{cyan}{B}\&\textcolor{argon orange}{O}};
     }
+
+
+
   \end{scope}
 
 \end{tikzpicture}

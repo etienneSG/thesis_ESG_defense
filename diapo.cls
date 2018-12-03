@@ -60,19 +60,19 @@
 \usepackage{listings}
 
 % Pour du pseudo-code
-\iflanguage{english}{%
-  \usepackage[english,noend]{algorithm2e}%
-  \SetKw{And}{and}%
-  \SetKw{From}{from}%
-  \SetKw{To}{to}%
-}{%
-  \iflanguage{french}{%
-    \usepackage[french,noend]{algorithm2e}%
-    \SetKw{And}{et}%
-    \SetKw{From}{de}%
-    \SetKw{To}{\`{a}}%
-  }{}%
-}
+
+\usepackage[english,noend]{algorithm2e}
+\SetKwInput{Input}{Input}
+\SetKwInput{Output}{Output}
+\SetKwInput{Parameters}{Parameters}
+\SetKwFor{BinarySearch}{Binary search on}{}{end}
+\SetKw{Return}{Return}
+\SetKw{And}{and}
+\SetKw{From}{from}
+\SetKw{To}{to}
+\SetKw{Between}{between}
+\setlength{\algomargin}{0em}
+\DontPrintSemicolon
 \setlength{\algomargin}{0em}
 
 %Pour les tableaux

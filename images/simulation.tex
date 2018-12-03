@@ -9,7 +9,10 @@
       \begin{center}\huge \textcolor{argon gray}{Simulator}\end{center}
       \begin{itemize}
         \item Start at week $t=0$
-        \item For each week t\\
+        \item For each week t
+      \end{itemize}
+      \vspace{-.5cm}
+      \begin{center}
         \begin{tikzpicture}
           \begin{scope}[local bounding box=time_scale, scale=.75]
             % Time
@@ -25,12 +28,15 @@
             \draw[black, line width=1pt, ->, -angle 60, font=\footnotesize] (3.75,1.5) node[anchor=south] {current} -- (3.75,1);
           \end{scope}
         \end{tikzpicture}
+      \end{center}
+      \vspace{-.5cm}
+      \begin{itemize}
+      \item[] 
         \begin{itemize}
           \item Observe inventory level
           \item Use heuristic and forecast to compute the production planning
           \item Decide production for current week
         \end{itemize}
-        \item Return KPI
       \end{itemize}
     \end{minipage}
   }
@@ -58,8 +64,9 @@
           \item \textcolor{argon gray}{Objective function}
           \item \textcolor{argon gray}{Holding costs}
           \item \textcolor{argon gray}{Backorder costs}
-          \item \textcolor{argon gray}{Cycle service level}
           \item \textcolor{argon gray}{Fill rate service level}
+          \item \textcolor{argon gray}{Cycle service level}
+          \item \textcolor{argon gray}{Workload}
           \item \textcolor{argon gray}{\ldots}
         \end{itemize}
     \end{minipage}

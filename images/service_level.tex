@@ -1,0 +1,90 @@
+\begin{tikzpicture}[font=\small]
+  
+  \pgfmathsetmacro{\xdemand}{6.5}%
+  \pgfmathsetmacro{\xstart}{7}%
+  \pgfmathsetmacro{\xend}{13}%
+
+  \pgfmathsetmacro{\ydemand}{2}%
+  \pgfmathsetmacro{\ystart}{3}%
+  \pgfmathsetmacro{\yend}{11}%
+  \pgfmathsetmacro{\legendR}{12.5}%
+  \pgfmathsetmacro{\legendO}{13.5}%
+  \pgfmathsetmacro{\legendG}{14.5}%
+  \pgfmathsetmacro{\title}{15.5}%
+
+  \pgfmathsetmacro{\xdmin}{7}%
+  \pgfmathsetmacro{\xdav}{10}%
+  \pgfmathsetmacro{\xdmax}{13}%
+
+  \pgfmathsetmacro{\ydmin}{3}%
+  \pgfmathsetmacro{\ydav}{10}%
+  \pgfmathsetmacro{\ydmax}{11}%
+
+  \pgfmathsetmacro{\legendwidth}{.5}%
+  \pgfmathsetmacro{\legendheight}{.5}%
+
+
+  \begin{scope}[local bounding box=VaR, scale=.3]
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Assignment using expectation
+    \visible<2>
+    {
+      \fill[green!50] (\xstart,\ydav) -- (\xdav,\ydav) -- (\xdav,\ystart) -- (\xstart,\ystart) -- cycle;
+      \fill[red!50] (\xstart,\ydav) -- (\xdav,\ydav) -- (\xdav,\ystart) -- (\xstart,\ystart) -- (\xdmax,\ystart) -- (\xdmax,\ydmax) -- (\xstart,\ydmax) -- cycle;
+    }
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Robust assignment
+    \visible<3>
+    {
+      \fill[green!50] (\xstart,\ydmax) -- ({\xdav-(\ydmax-\ydav)},\ydmax) -- (\xdmax,{\xdav-(\xdmax-\xdav)}) -- (\xdmax,\ystart) -- (\xstart,\ystart) -- cycle;
+      \fill[orange!50] ({\xdav-(\ydmax-\ydav)},\ydmax) -- (\xdav,\ydmax) -- (\xdav,\ydav) -- cycle;
+      \fill[orange!50] (\xdmax,{\xdav-(\xdmax-\xdav)}) -- (\xdmax,\ydav) -- (\xdav,\ydav) -- cycle;
+      \fill[red!50] (\xdmax,\ydav) -- (\xdav,\ydav) -- (\xdav,\ydmax) -- (\xdmax,\ydmax) -- cycle;
+    }
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Reasonable assignment
+    \visible<4>
+    {
+      \fill[green!50] (\xstart,\ydav) -- (\xdav,\ydav) -- (\xdmax,{\xdav-(\xdmax-\xdav)}) -- (\xdmax,\ystart) -- (\xstart,\ystart) -- cycle;
+      \fill[orange!50] (\xdmax,{\xdav-(\xdmax-\xdav)}) -- (\xdmax,\ydav) -- (\xdav,\ydav) -- cycle;
+      \fill[red!50] (\xdmax,\ydav) -- (\xstart,\ydav) -- (\xstart,\ydmax) -- (\xdmax,\ydmax) -- cycle;
+    }
+
+
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    % Axis
+
+    % x axis (demand B)
+    \draw [->] (\xstart,\ystart) -- ({\xend+.5},\ystart);
+    \draw ({.5*(\xstart+\xend)},\ydemand) node[anchor=north]{\scriptsize \textcolor{cyan}{demand B}};
+    \draw (\xdmin,\ystart) node[anchor=north]{\tiny 70};
+    \draw (\xdav,\ystart) node[anchor=north]{\tiny 100};
+    \draw (\xdmax,\ystart) node[anchor=north]{\tiny 130};
+
+    % y axis (demand O)
+    \draw [->] (\xstart,\ystart) --  (\xstart,{\yend+1});
+    \draw (\xdemand,{.5*(\ystart+\yend)}) node[anchor=south, rotate=90]{\scriptsize \textcolor{argon orange}{demand O}};
+    \draw (\xstart,\ydmin) node[anchor=east]{\tiny 30};
+    \draw (\xstart,\ydav) node[anchor=east]{\tiny 100};
+    \draw (\xstart,\ydmax) node[anchor=east]{\tiny 110};
+
+    % square
+    \draw (\xstart,\ydmax) -- (\xdmax,\ydmax) -- (\xdmax,\ystart);
+    \draw[dashed] (\xstart,\ydav) -- (\xdav,\ydav) -- (\xdav,\ystart);
+
+    % title
+    \draw ({.5*(\xstart+\xend)},\title) node[anchor=south]{Service level};
+
+    % legend
+    \draw[fill=green!50] (\xstart,\legendG) -- ({\xstart+\legendwidth},\legendG) -- ({\xstart+\legendwidth},{\legendG+\legendheight}) node[midway, right]{\tiny no stock-out} -- (\xstart,{\legendG+\legendheight}) -- cycle;
+    \draw[fill=orange!50] (\xstart,\legendO) -- ({\xstart+\legendwidth},\legendO) -- ({\xstart+\legendwidth},{\legendO+\legendheight}) node[midway, right]{\tiny stock-out of B or O} -- (\xstart,{\legendO+\legendheight}) -- cycle;
+    \draw[fill=red!50] (\xstart,\legendR) -- ({\xstart+\legendwidth},\legendR) -- ({\xstart+\legendwidth},{\legendR+\legendheight}) node[midway, right]{\tiny stock-out of B and O} -- (\xstart,{\legendR+\legendheight}) -- cycle;
+
+  \end{scope}
+
+\end{tikzpicture}

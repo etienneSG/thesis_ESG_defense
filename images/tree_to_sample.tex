@@ -4,7 +4,8 @@
 
   \begin{scope}[local bounding box=CompleteTree, scale=.5]
   \foreach \y in {0,1.5,...,4.5} \draw[dashed, argon gray] (-1,\y) -- (21,\y);
-  \foreach \y in {0,...,3} \draw[dashed, argon gray] (12.5,{4.5*(3-\y)/3}) node[anchor=center,fill=argon gray!5] {$t=t_{\y}$};
+  \draw[dashed, argon gray] (12.5,4.5) node[anchor=center,fill=argon gray!5] {$t_0$};
+  \foreach \y in {1,...,3} \draw[dashed, argon gray] (12.5,{4.5*(3-\y)/3}) node[anchor=center,fill=argon gray!5] {$t_0+{\y}$};
 
   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
   % complete tree

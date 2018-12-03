@@ -41,14 +41,14 @@
 \coverframe{Balancing Cost and Flexibility in Supply Chain}
 {Etienne de Saint Germain, PhD Defense}
 {December 17th, 2018}
-{Directed by Frédéric Meunier and Vincent Leclère}
+{Directed by Vincent Leclère and Frédéric Meunier}
 
 
 
 %\section{Business context (production)} 
 
 
-\begin{myframe}[Supply Chain issues (3')]
+\begin{myframe}[Supply Chain challenge (3')]
 
 
 
@@ -156,24 +156,6 @@
 \end{frame}
 
 
-% \section{Continuous-time inventory model (4')}
-
-
-
-% \begin{myframe}[Continuous-time inventory model]
-
-% \mytext{\blockwidth}{anchor = north west,
-%   inner sep = 2pt
-% }{
-%   \begin{itemize}
-%   \item Une slide montrant la formule de Wilson versus la formule d'Argon
-%   \end{itemize}
-% }
-
-
-% \end{myframe}
-
-
 
 \section{Discrete-time inventory model (20')}
 
@@ -220,6 +202,9 @@
     \end{itemize}
     \item A method to price backorder costs
     \item A solving method
+    \begin{itemize}
+      \item Validated on real dataset
+    \end{itemize}
     \end{itemize}
   }
 
@@ -300,7 +285,7 @@
 
 
 
-\begin{myframe}[Disadvantage of CLSP formulation (\underline{according to Argon Consulting})]
+\begin{myframe}[Disadvantage of CLSP formulation (according to Argon Consulting)]
 
   \mytext{\blockwidth}{anchor = north west,
     inner sep = 2pt
@@ -315,7 +300,7 @@
     \item A bound over the number of setups is easier to get
       \begin{itemize}
       \item Given by operational level
-      \item Represents scheduling constraints (which are neglected at tactical level)
+      \item Represents scheduling constraints (which are not captured at this level)
       \end{itemize}
     \end{itemize}
   }
@@ -360,17 +345,17 @@
 
 
 
-\begin{myframe}[Stochastic vision]
+\begin{myframe}[Dealing with uncertainty]
 
   \mytext{\blockwidth}{anchor = north west,
     inner sep = 2pt
   }{
     \begin{itemize}
-      \item Dealing with uncertainty
+      \item Context
       \begin{itemize}
         \item Stochastic demand
-        \item We can set the production levels each week
-        \item Objective: find the best production decision for the current week minimizing the expected costs
+        \item Production levels can be set each week
+        \item Objective: minimize the expected costs
       \end{itemize}
       \item Need for backorder
       \begin{itemize}
@@ -378,12 +363,12 @@
         \begin{itemize}
           \item Simple example:
 
-          - bounded capacity
+          - Bounded capacity
 
           - Gaussian noise around demand
-
-          $\implies$ There is no feasible solution
         \end{itemize}
+        $\implies$ There is no feasible solution
+
         \item Industrial reason:
         \begin{itemize}
           \item Nonnegative inventories are commercial constraints
@@ -394,7 +379,7 @@
     \end{itemize}
   }
 
-  \mytext[$(7.25,5.5)$]{\blockwidth}{anchor = north west,
+  \mytext[$(7.25,6)$]{\blockwidth}{anchor = north west,
     inner sep = 2pt
   }{
     \input{images/gaussian_noise_around_demand.tex}
@@ -408,7 +393,7 @@
   \mytext{\blockwidth}{anchor = north west,
     inner sep = 2pt
   }{
-    \begin{equation}\label{eq:stochasticPP}\tag{S}
+    \begin{equation}\label{eq:stochastic-CLSP-BS}\tag{S}
       \begin{array}{rl@{\qquad}l}
         \min & \multicolumn{2}{l}{\ds \esper{\sum_{t=1}^{\horizon} \sum_{i\in\REF} \bracket{\red{\holding^i \va\excess_t^i + \delay^i\va\backlog_t^i}}}}
         \\
@@ -465,14 +450,14 @@
           \item Cases $\nbsetups=1$ and $\nbsetups=2$ still open
         \end{itemize}
       \item[]
-      \item Continuous relaxation of \ref{eq:CLSP-BS} does NOT depend on $\nbsetups$
+      \item Continuous relaxation of \ref{eq:CLSP-BS} does \underline{not} depend on $\nbsetups$
       \item[]
       \item 2 natural extended formulations:
         \begin{itemize}
           \item 1 binary variable $x_{pt}$ where $p\in{\REF \choose N}$ per possible plan for a week $t$
           \item 1 binary variable $y_q^i$ where $q\in 2^{\range{\horizon}}$ per possible plan for a item $i$
-          \item[\textcolor{black}{$\implies$}] Same continuous relaxations as compact formulation
         \end{itemize}
+        $\implies$ Same continuous relaxations as compact formulation
       \end{itemize}
     \end{itemize}
   }
@@ -495,11 +480,15 @@
           \item We want reasonable computation time
         \end{itemize}
       \item[]
-      \item Need for heuristics, \emph{e.g.}
+      \item Need for heuristics, \emph{e.g.,}
         \begin{itemize}
           \item Argon's heuristic (industrial heuristic)
           \item Deterministic approximation
           \item \red{Two-stage stochastic programming approach}
+
+          - Information relaxation
+
+          - Sampling
         \end{itemize}
       \end{itemize}
     \end{itemize}
@@ -514,7 +503,7 @@
     rectangle, argon gray, thick, draw, fill=argon gray!05
   }{
     \begin{itemize}
-      \item Observe current inventory level at $t=t_0$
+      \item Observe current inventory level at $t_0$
     \end{itemize}
   }
 
@@ -522,7 +511,7 @@
     inner sep = 2pt, rectangle, argon gray, thick, draw, fill=argon gray!05
   }{
     \begin{itemize}
-      \item Set production decisions for current week $t=t_0$
+      \item Set production decisions for current week $t_0$
       \item Set $t_0=t_0+1$
     \end{itemize}
   }
@@ -531,7 +520,7 @@
     inner sep = 2pt, rectangle, argon gray, thick, draw, fill=argon gray!05
   }{
     \begin{itemize}
-      \item Construct a \red{sample of $m$ scenarios of demand to approximate the scenario tree} in stochastic model (see~\cite{Kleywegt2002})
+      \item Construct a \red{sample of $m$ scenarios of demand to approximate the scenario tree} (see~\cite{Kleywegt2002})
     \end{itemize}
 
     \vspace{-.6cm}
@@ -547,49 +536,57 @@
 
   \draw[argon gray, thick, -angle 60] (observe.south) -- (stochastic.north);
   \draw[argon gray, thick, -angle 60] (stochastic.south) -- (production.north);
-  \draw[argon gray, thick, -angle 60] (production.west) -- ($( .25,0 |- production.west)$) -- ($( .25,0 |- observe.west)$) -- (observe.west);
+  \draw[argon gray, thick, -angle 60] (production.184) -- ($( .25,0 |- production.184)$) -- ($( .25,0 |- observe.west)$) -- (observe.west);
 
 
 \end{myframe}
 
 
+\begin{myframe}[Other heuristic: deterministic approximation]
 
-\begin{myframe}[Other heuristics: Argon's heuristic and deterministic approximation]
-
-  \mytext[1pt,8.25][precompute]{.5\blockwidth-6pt}{anchor = north west,
-    inner sep = 2pt, rectangle, argon gray, thick, draw, fill=argon gray!05
-  }{
-    \begin{itemize}
-      \item Lot-size
-      \begin{itemize}
-        \item For each week $t$
-        \begin{itemize}
-          \item If $\inventory_t^i \le s_{\min}^i$, produce quantity $\ell_i$
-        \end{itemize}
-      \end{itemize}
-    \end{itemize}
-  }
-
-
-  \mytext[1pt,8.25][observe]{\blockwidth-4pt}{anchor = north west,
+  \mytext[.75,8.25][observe]{\blockwidth-.9cm}{anchor = north west,
     rectangle, argon gray, thick, draw, fill=argon gray!05
   }{
     \begin{itemize}
-      \item Observe current inventory level at $t=t_0$
+      \item Observe current inventory level at $t_0$
     \end{itemize}
   }
 
-  \mytext[1pt,1][production]{\blockwidth-4pt}{anchor = south west,
+  \mytext[.75,1][production]{\blockwidth-.9cm}{anchor = south west,
     inner sep = 2pt, rectangle, argon gray, thick, draw, fill=argon gray!05
   }{
     \begin{itemize}
-      \item Set production decisions for current week $t=t_0$
+      \item Set production decisions for current week $t_0$
+      \item Set $t_0=t_0+1$
     \end{itemize}
   }
 
-
-  \mytext[$(observe.west)+(0,.75)$][lot]{.5\blockwidth-6pt}{anchor = south west,
+  \mytext[$.5*(observe.south west)+.5*(production.north west)$][stochastic]{\blockwidth-.9cm}{anchor = west,
     inner sep = 2pt, rectangle, argon gray, thick, draw, fill=argon gray!05
+  }{
+    \begin{itemize}
+      \item \red{Replace random demand $\va\demand_t^i$ by its expectation} in stochastic \ref{eq:CLSP-BS}
+      \begin{itemize}
+        \item Small Mixed Integer Program
+        \item Almost \ref{eq:CLSP-BS} but with backorder
+      \end{itemize}
+      \item Solve this new problem
+    \end{itemize}
+  }
+
+  \draw[argon gray, thick, -angle 60] (observe.south) -- (stochastic.north);
+  \draw[argon gray, thick, -angle 60] (stochastic.south) -- (production.north);
+  \draw[argon gray, thick, -angle 60] (production.184) -- ($( .25,0 |- production.184)$) -- ($( .25,0 |- observe.west)$) -- (observe.west);
+
+
+\end{myframe}
+
+
+\begin{myframe}[Other heuristic: Argon's heuristic]
+
+
+  \mytext[.75,8.25][precompute]{\blockwidth-.9cm}{anchor = north west,
+    rectangle, argon gray, thick, draw, fill=argon gray!05
   }{
     \begin{itemize}
       \item For each item $i$
@@ -600,35 +597,45 @@
     \end{itemize}
   }
 
-  \mytext[$.5*(observe.east)+.5*(production.east)$][deterministic]{.5\blockwidth-6pt}{anchor = east,
+
+  \mytext[.75,5.6][observe]{\blockwidth-.9cm}{anchor = north west,
+    rectangle, argon gray, thick, draw, fill=argon gray!05
+  }{
+    \begin{itemize}
+      \item Observe current inventory level at $t_0$
+    \end{itemize}
+  }
+
+
+  \mytext[.75,1][production]{\blockwidth-.9cm}{anchor = south west,
     inner sep = 2pt, rectangle, argon gray, thick, draw, fill=argon gray!05
   }{
     \begin{itemize}
-      \item Deterministic approximation
+      \item Set $t_0+1$
+    \end{itemize}
+  }
+
+
+  \mytext[$.5*(observe.south west)+.5*(production.north west)$][lot]{\blockwidth-.9cm}{anchor = west,
+    inner sep = 2pt, rectangle, argon gray, thick, draw, fill=argon gray!05
+  }{
+    \begin{itemize}
+      \item For each item $i$
       \begin{itemize}
-        \item Solve deterministic version of stochastic model where\\\red{the random variable $\va\demand_t^i$ is replaced by the deterministic expected demand}
+        \item If \red{$\inventory_{t_0}^i \le s_{\min}^i$}, then
         \begin{itemize}
-          \item It is a Mixed Integer Program
-          \item Almost deterministic model\\but with backorder
-        \end{itemize}
+           \item \red{Produce quantity $\ell_i$} at current week $t_0$
+         \end{itemize}
       \end{itemize}
     \end{itemize}
   }
 
-  \coordinate (upper_row) at ($.5*(deterministic.north)+.5*(observe.south)$);
 
-  \draw[argon gray, thick] (observe.south) -- ($(observe.south |- upper_row)$);
-  \draw[argon gray, thick] ($(lot.north |- upper_row)$) -- ($(deterministic.north |- upper_row)$);
-  \draw[argon gray, thick, -angle 60] ($(lot.north |- upper_row)$) -- (lot.north);
-  \draw[argon gray, thick, -angle 60] ($(deterministic.north |- upper_row)$) -- (deterministic.north);
 
-  \coordinate (lower_row) at ($.5*(deterministic.south)+.5*(production.north)$);
-
-  \draw[argon gray, thick] (lot.south) -- ($(lot.south |- lower_row)$);
-  \draw[argon gray, thick] (deterministic.south) -- ($(deterministic.south |- lower_row)$);
-  \draw[argon gray, thick] ($(lot.south |- lower_row)$) -- ($(deterministic.south |- lower_row)$);
-  \draw[argon gray, thick, -angle 60] ($(production.north |- lower_row)$) -- (production.north);
-
+  \draw[argon gray, thick, -angle 60] (precompute.south) -- (observe.north);
+  \draw[argon gray, thick, -angle 60] (observe.south) -- (lot.north);
+  \draw[argon gray, thick, -angle 60] (lot.south) -- (production.north);
+  \draw[argon gray, thick, -angle 60] (production.west) -- ($( .25,0 |- production.west)$) -- ($( .25,0 |- observe.west)$) -- (observe.west);
 
 \end{myframe}
 
@@ -650,7 +657,7 @@
 \end{myframe}
 
 
-\begin{myframe}[Instance characteristics]
+\begin{myframe}[Instance]
 
   \mytext[current][text]{\blockwidth}{anchor = north west,
     inner sep = 2pt
@@ -664,35 +671,62 @@
   \mytext[$(text.south)+(0,-.25)$][numerical]{.95\blockwidth}{anchor = north,
     inner sep = 2pt
   }{
-    \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrrr}
+    % \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrrr}
+    % \hline
+    % Instances &
+    % \multicolumn{7}{c}{Instance characteristics}
+    % \\
+    % \cline{2-8}
+    % & $\card{\REF}$
+    % & $\max\bracket{\espe\sqbracket{\va\demand_t^i}}$
+    % & \multicolumn{1}{c}{$\capacity$}
+    % & \multicolumn{1}{c}{$\nbsetups$}
+    % & \multicolumn{1}{c}{$\holding^i$}
+    % & \multicolumn{1}{c}{$v$}
+    % & \multicolumn{1}{c}{$\delay^i$}
+    % \\\hline
+    % L2\_v20\_85 & $21$ & $4992$ & $10562$ & $7$ & $35$--$61$ & $0.2$ & $11$--$146$
+    % \\
+    % L2\_v20\_95 &  &  &  &  &  &  & $34$--$390$
+    % \\
+    % L2\_v20\_98 &  &  &  &  &  &  & $35$--$976$
+    % \\
+    % L2\_v50\_85 &  &  &  &  &  & $0.5$ & $31$--$168$
+    % \\
+    % L2\_v50\_95 &  &  &  &  &  &  & $34$--$1198$
+    % \\
+    % L2\_v50\_98 &  &  &  &  &  &  & $36$--$1211$
+    % \\
+    % L6\_v20\_98 & $22$ & $8640$ & $13299$ & $8$ & $16$--$23$ & $0.2$ & $15$--$933$
+    % \\
+    % L6\_v50\_98 &  &  &  &  &  & $0.5$ & $15$--$1360$
+    % \\\hline
+    % \end{tabular*}
+    \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrr@{\extracolsep{\fill}}}
     \hline
     Instances &
-    \multicolumn{7}{c}{Instance characteristics}
-    \\
-    \cline{2-8}
+    \multicolumn{6}{c}{Instance characteristics}
+    \\ \cline{2-7} \rule{0pt}{.9\normalbaselineskip}
     & $\card{\REF}$
     & $\max\bracket{\espe\sqbracket{\va\demand_t^i}}$
     & \multicolumn{1}{c}{$\capacity$}
     & \multicolumn{1}{c}{$\nbsetups$}
     & \multicolumn{1}{c}{$\holding^i$}
-    & \multicolumn{1}{c}{$v$}
-    & \multicolumn{1}{c}{$\delay^i$}
+    & \multicolumn{1}{c}{Workload}
     \\\hline
-    L2\_v20\_85 & $21$ & $4992$ & $10562$ & $7$ & $35$--$61$ & $0.2$ & $11$--$146$
+    $L_0$ & $21$ & $3780$ & $8518$ & $7$ & $45$--$88$ & $74\%$
     \\
-    L2\_v20\_95 &  &  &  &  &  &  & $34$--$390$
+    $L_1$ & $30$ & $4122$ & $13326$ & $12$ & $52$--$82$ & $52\%$
     \\
-    L2\_v20\_98 &  &  &  &  &  &  & $35$--$976$
+    $L_2$ & $21$ & $4992$ & $10562$ & $7$ & $35$--$61$ & $61\%$
     \\
-    L2\_v50\_85 &  &  &  &  &  & $0.5$ & $31$--$168$
+    $L_3$ & $13$ & $6220$ & $10394$ & $5$ & $22$--$30$ & $65\%$
     \\
-    L2\_v50\_95 &  &  &  &  &  &  & $34$--$1198$
+    $L_4$ & $18$ & $10584$ & $62164$ & $8$ & $12$--$14$ & $35\%$
     \\
-    L2\_v50\_98 &  &  &  &  &  &  & $36$--$1211$
+    $L_5$ & $12$ & $11772$ & $7902$ & $6$ & $15$--$17$ & $98\%$
     \\
-    L6\_v20\_98 & $22$ & $8640$ & $13299$ & $8$ & $16$--$23$ & $0.2$ & $15$--$933$
-    \\
-    L6\_v50\_98 &  &  &  &  &  & $0.5$ & $15$--$1360$
+    $L_6$ & $22$ & $8640$ & $13299$ & $8$ & $16$--$23$ & $98\%$
     \\\hline
     \end{tabular*}
   }
@@ -700,52 +734,43 @@
   \mytext[numerical.south]{.95\blockwidth}{anchor = north,
     inner sep = 2pt
   }{
-    \scriptsize
     \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lll}
     $\REF$: set of items &
     $\va\demand_t^i$: demand &
     $\capacity$: line capacity
     \\
     $\nbsetups$: number of setups &
-    $\holding^i$: unitary holding cost &
-    $v$: volatility
-    \\
-    $\delay^i$: unitary backorder cost
+    $\holding^i$: unitary holding cost
     \end{tabular*}
   }
 
 \end{myframe}
 
 
-
-\begin{myframe}[Probabilistic model]
+\begin{myframe}[Probabilistic model of demand]
 
 \mytext[current][text]{\blockwidth}{anchor = north west,
   inner sep = 2pt
 }{
   \begin{itemize}
-    \item Random demand is generated using Dirichlet distributions and satisfies
+    \item Demand distribution is not provided by the industrial partner
+    \item Features of desired probabilistic model of demand
     \begin{enumerate}
-      \item Demand's expectation is equal to its historical value:
-      $\ds\espe\sqbracket{\va\demand_t^i} = \tilde{\demand}_t^i$
-      \item Demand's total volume does not depend on the realization:
-
-      \begin{center}
-      $\ds\sum_{i,t}\va\demand_t^i = \sum_{i,t}\tilde{\demand}_t^i\quad\as$
-      \end{center}
-      \item Demand's variance is equal to
-      $\ds(\sigma_t^i)^2=\vari\sqbracket{\va\demand_t^i}=\gamma\,\tilde{\demand}_t^i\sum_{\bracket{j,\tau}\ne\bracket{i,t}}\tilde{\demand}_{\tau}^j$
-    \end{enumerate}
-    \item 2. is motivated by the study of flexibility (mix product variations)
-    \item Advantages of Dirichlet distributions
-    \begin{itemize}
+      \item Few parameters (expectation and standard deviation)
+      \item $\sum_{t,i}\va\demand_t^i$ is deterministic (only product mix variations)
       \item Easy to simulate
-      \item Control on \emph{volatility} $v$ of the random demand
+      \item Same simulator and same properties conditionally to the past
+    \end{enumerate}
+    \item We propose a model based on Dirichlet distributions
+    \begin{itemize}
+      \item Parameters:
       \begin{itemize}
-        \item $\gamma$ is chosen minimizing
-        $\ds\norm{\bracket{\frac{\sigma_t^i}{\tilde{\demand}_t^i}}_{t,i}-v\cdot1_{\REF\times\range{\horizon}}}_2$
+        \item Projected demand used as expectation (e.g., historical demand)
+        \item One parameter $v$ (volatility) which control standard deviations
       \end{itemize}
+      \item Simulation based on Gamma distributed variables
     \end{itemize}
+    \item Can be used by industrials which do not have scenarios
   \end{itemize}
 }
 
@@ -759,42 +784,40 @@
   }{
     \begin{itemize}
       \item Objective function in M\euro
-      \item Mean over 30 runs and confidence interval at $95\%$
+      \item Mean over 30 runs for objective fill rate service level $=95\%$
       \begin{itemize}
-        \item Time limit for each week $=90$s
+        \item Computing time limit for each week $=120$s
         \item $m=20$ scenarios
+        \item Volatility $v=50\%$
       \end{itemize}
     \end{itemize}
   }
 
-  \mytext[$(text.south)+(0,-.25)$]{.95\blockwidth}{anchor = north,
+  \mytext[$(text.south)+(0,-.25)$]{.6\blockwidth}{anchor = north,
     inner sep = 2pt
   }{
-    \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrr}
+    \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrr@{\extracolsep{\fill}}}
     \hline
     Instances
-    & \multicolumn{1}{c}{LB}
     & \multicolumn{1}{c}{2SA-$m$}
     & \multicolumn{1}{c}{Det.}
-    & \multicolumn{1}{c}{Lot-size}
+    & \multicolumn{1}{c}{Argon}
     \\\hline
-    L2\_v20\_85 & $0.64$ &      $ 1.37\pm0.05$  &  $1.45\pm0.06$ &  $8.18\pm0.14$
+    $L_0$ & 1616 & 1679 & 8237
     \\
-    L2\_v20\_95 & $1.02$ &      $ 2.44\pm0.06$  &  $2.56\pm0.07$ & $10.12\pm0.14$
+    $L_1$ & 1869 & 2006 & 14450
     \\
-    L2\_v20\_98 & $1.12$ & \red{$ 3.25\pm0.09$} &  $3.54\pm0.10$ & $11.78\pm0.17$
+    $L_2$ & 1367 & 1481 & 9280
     \\
-    L2\_v50\_85 & $0.99$ &       $2.93\pm0.14$  &  $3.06\pm0.22$ &  $8.56\pm0.24$
+    $L_3$ & 707 & 741 & 4481
     \\
-    L2\_v50\_95 & $1.33$ &       $4.54\pm0.25$  &  $5.00\pm0.37$ & $11.40\pm0.39$
+    $L_4$ & 755 & 830 & 8292
     \\
-    L2\_v50\_98 & $1.49$ & \red{ $6.12\pm0.44$} &  $7.78\pm0.67$ & $15.62\pm1.06$
+    $L_5$ & 400 & 433 & 1093
     \\
-    L6\_v20\_98 & $3.79$ & \red{ $5.61\pm0.07$} &  $5.90\pm0.06$ & $15.39\pm0.12$
-    \\
-    L6\_v50\_98 & $6.96$ & \red{$12.27\pm0.25$} & $13.05\pm0.20$ & $23.55\pm0.27$
+    $L_6$ & 2262 & 2424 & 3594
     \\\hline\hline
-    \small Computing time & $24$h & $90$s & $\le10$s & $\le1$s
+    \small Computing time & $120$s & $\le10$s & $\le1$s
     \\\hline
     \end{tabular*}
   }
@@ -802,32 +825,7 @@
 \end{myframe}
 
 
-\begin{myframe}[Compute the lower bound]
-
-  \mytext[0,8.25]{\blockwidth}{anchor = north west,
-    inner sep = 2pt
-  }{
-  \begin{itemize}
-    \item We obtain a lower bound solving 2SA-$m$, with m=1000
-    \begin{itemize}
-      \item (2SA) is a relaxation of stochastic model
-      $$V_{2SA} \le V_{\ref{eq:stochasticPP}}$$
-      \item The optimal value of (2SA-$m$) converges almost surely to the optimal value of (2SA)
-      $$V_{2SA-m} \xrightarrow[m\to\infty]{} V_{2SA}\quad a.s.$$
-      and the optimal solutions converge
-    \end{itemize}
-    \item[]
-    \item We could obtain a lower bound solving many time 2SA-$m$ with $m$ small
-    \begin{itemize}
-      \item $\espe\sqbracket{V_{2SA-m}}\le V_{2SA}\le V_S$
-    \end{itemize}
-  \end{itemize}
-  }
-
-\end{myframe}
-
-
-\begin{myframe}[Results: holding costs vs. service level]
+\begin{myframe}[Results: holding costs vs. service level (line $L_5$, volatility $v=50\%$)]
 
 
   \mytext[0,8.25]{.45\blockwidth}{anchor = north west,
@@ -835,17 +833,18 @@
   }{
     %\begin{figure}[htb]
       \centering
-      \input{images/simul_line-2_quarter-1_pastcor-025_volatility-020.tikz}
+      \input{images/simul_line-5_volatility-50_service-95.tikz}
     %  \caption{Results for the 30 runs of L2 with $v=0.5$ and $\delay=1000$}
     %  \label{fig:cloud-realization}
     %\end{figure}
   }
 
-  \mytext[0,2]{.43\blockwidth}{anchor = north west,
+  \mytext[0,2]{.48\blockwidth}{anchor = north west,
     inner sep = 2pt
   }{
+    \footnotesize
     \begin{itemize}
-    \item Results for the 30 runs of L2\_v20\_95
+    \item Results for the 30 runs of $L_5$ for objective fill rate service level $=95\%$
     \end{itemize}
   }
 
@@ -855,7 +854,7 @@
   }{
     %\begin{figure}[htb]
       \centering
-      \input{images/simul_line-2_quarter-1_pastcor-025_volatility-020_mix-safety.tikz}
+      \input{images/simul_line-5_volatility-50_mix-safety.tikz}
     %  \caption{Average results for L2 for various values of desired service level $\servicelvl$ and $v=0.5$}
     %  \label{fig:mean-realization}
     %\end{figure}
@@ -864,123 +863,40 @@
   \mytext[5.9,2]{.53\blockwidth}{anchor = north west,
     inner sep = 2pt
   }{
+    \footnotesize
     \begin{itemize}
-    \item Average results for L2 for various values of desired service level $\servicelvl$ and $v=0.2$
+    \item Average results for $L_5$ for objective fill rate service level $\in\crbracket{85\%,95\%,98\%}$
     \end{itemize}
   }
 
 \end{myframe}
 
 
-
-\subsection{Surrogate backorder costs (to remove?)}
-
-
-
-\begin{myframe}[Surrogate backorder costs -- Problem]
-
-
-  \mytext[current][problem]{\blockwidth}{anchor = north west,
-    inner sep = 2pt
-  }{
-    \begin{itemize}
-      \item Backorder costs $\delay^i$
-      \begin{itemize}
-        \item[\textcolor{argon orange}{\textcircled{+}}] Always a feasible solution
-        \item[\textcolor{argon gray}{\textcircled{--}}] Sometimes hard to estimate
-      \end{itemize}
-      \item Fill rate service level constraint
-        $$
-          \EE\sqbracket{
-          \frac{\sum_{i\in\REF}\sum_{t=1}^{\horizon}\min(\va \demand_t^i,\va \quantity_t^i+\va\excess_{t-1}^i)}
-          {\sum_{i\in\REF}\va\demand^i}}
-          \ge \servicelvl
-        $$
-      \begin{itemize}
-        \item[\textcolor{argon orange}{\textcircled{+}}] Easily expressed by industrial partner
-        \item[\textcolor{argon gray}{\textcircled{--}}] Cannot always been satisfied
-      \end{itemize}
-      \item New problem:
-      \begin{itemize}
-        \item \red{Find surrogate backorder costs to replace the fill rate service level constraint}
-      \end{itemize}
-    \end{itemize}
-  }
-
-\end{myframe}
-
-
-\begin{myframe}[Surrogate backorder costs -- Method]
-
-
-  \mytext{\blockwidth}{anchor = north west,
-    inner sep = 2pt
-  }{
-    \begin{itemize}
-      \item We define surrogate backorder cost as follow
-      \red{$$\delay^i := \frac{\PP[\va \demand^i\leq q^i(\servicelvl)]}{\PP[\va \demand^i>q^i(\servicelvl)]} \holding^i$$}
-      where
-      $q^i(\servicelvl) :=  \min \crbracket{q\in \RR_+ \; \Big| \; \esper{\frac{\min(\va\demand^i,q)}{\va\demand^i}}\ge \servicelvl}$
-      \item Justification
-      \begin{itemize}
-        \item Consider the uncapacitated stochastic model with one item and one week
-        $$\min_{q\geq 0} \EE \sqbracket{\holding^i (q - \va d^i )^+ + \delay^i ( \va d^i - q)^+}$$
-        \begin{itemize}
-          \item This is the newsvendor problem
-        \end{itemize}
-        \item Then, the optimal solution of newsvendor problem have a fill rate service level equal to $\servicelvl$
-      \end{itemize}
-    \end{itemize}
-  }
-
-\end{myframe}
-
-
-\begin{myframe}[Surrogate backorder costs -- Results]
+\begin{myframe}[Results: other KPI's]
 
   \mytext[current][text]{\blockwidth}{anchor = north west,
     inner sep = 2pt
   }{
     \begin{itemize}
-      \item Fill rate service level in \%
-      \item Mean over 30 runs and confidence interval at $95\%$
+      \item Real inventory is the main part of objective function
+      \item Backorder and fill rate service level
       \begin{itemize}
-        \item Heuristic 2SA-$m$ is used
-        \item Time limit for each week $=90$s
-        \item $m=20$ scenarios
+        \item Argon's heuristic always has very high service level at the expense of high inventory
+        \item (2SA-$m$) and Det. are more flexible but too optimistic
+      \end{itemize}
+      \item Workload is greater for Argon's heuristic than in (2SA-$m$) and Det.
+      \item Flexibility is not fully used in Argon's heuristic ($\sim90\%$)
+      \item[]
+      \item Limits of the comparison
+      \begin{itemize}
+        \item Not every detail of Argon's heuristic is known
+        \item Some very specific constraints may have been omitted
       \end{itemize}
     \end{itemize}
   }
 
-  \mytext[$(text.south)+(0,-.25)$]{.95\blockwidth}{anchor = north,
-    inner sep = 2pt
-  }{
-    \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrr}
-    \cline{2-5}
-    & \multicolumn{4}{c}{Fill rate service level}
-    \\\hline
-    Instance
-    & \multicolumn{1}{c}{85\%}
-    & \multicolumn{1}{c}{95\%}
-    & \multicolumn{1}{c}{99\%}
-    & \multicolumn{1}{c}{99.9\%}
-    \\\hline
-    L2\_v20 & $76.6\pm0.8$ & $81.3\pm0.7$ & $97.8\pm0.3$ & $99.6\pm0.2$
-    \\
-    L2\_v50 & $78.3\pm1.2$ & $89.9\pm0.7$ & $95.7\pm0.4$ & $95.6\pm0.5$
-    \\\hline
-    \end{tabular*}
-  }
-
-  \mytext[0,3]{\blockwidth}{anchor = north west,
-    inner sep = 2pt
-  }{
-    \begin{itemize}
-      \item Method is too optimistic
-    \end{itemize}
-  }
-
 \end{myframe}
+
 
 
 \subsection{Conclusion}
@@ -997,11 +913,47 @@
       \item We show some complexity results on the deterministic problem
       \item In a stochastic setting, we consider three heuristics compared on a simulator based on industrial data
       \begin{itemize}
-        \item Lot-size (industrial) is simple and computing time is less than 1s
-        \item Deterministic optimization is 2 times better than lot-size in less than 10s
-        \item 2-stage stochastic approximation is 3 times better than lot-size in less than 90s
+        \item Argon's heuristic (industrial) is simple and computing time is less than 1s
+        \item Deterministic approximation is better than Argon's heuristic in less than 10s
+        \item (2SA-$m$) is slightly better than Deterministic approximation
+        \begin{itemize}
+           \item Greater computing time (120s)
+           \item Better on many other KPI
+         \end{itemize}
       \end{itemize}
-      \item We propose a method to price the fill rate service level constraint and compute surrogate backorder costs
+    \end{itemize}
+  }
+
+\end{myframe}
+
+
+\begin{myframe}[Unpresented work and perspectives]
+
+
+  \mytext{\blockwidth}{anchor = north west,
+    inner sep = 2pt
+  }{
+    \begin{itemize}
+      \item Unpresented work
+      \begin{itemize}
+        \item Method to price the fill rate service level constraint and compute
+surrogate backorder costs
+        \begin{itemize}
+          \item Based on the newsvendor problem
+          \item Too optimistic
+        \end{itemize}
+        \item Alternative model using \emph{cover-sizes} as decision variables
+        \begin{itemize}
+          \item For each item, the interval length between two production periods is constant
+        \end{itemize}
+      \end{itemize}
+      \item[]
+      \item Perspectives
+      \begin{itemize}
+        \item Work on sampling method
+        \item Find specific valid cuts
+        \item Improve pricing of backorder costs
+      \end{itemize}
     \end{itemize}
   }
 
@@ -1009,7 +961,7 @@
 
 
 
-\section{Production Multi-sourcing (15')}
+\section{Production multi-sourcing (15')}
 
 
 \subsection{Business problem and contribution} 
@@ -1043,7 +995,7 @@
     \end{enumerate}
     \item Model must not be too dependent of the industry
     \begin{itemize}
-      \item versatility for Argon Consulting
+      \item Versatility for Argon Consulting
     \end{itemize}
   \end{itemize}
 }
@@ -1060,11 +1012,30 @@
 
 \begin{myframe}[Simple example]
 
-\mytext{\blockwidth}{anchor = north west,
+\mytext[0,8.6][example]{.75\blockwidth}{anchor = north west,
   inner sep = 2pt
 }{
   \begin{center}
     \input{images/assignment_example.tex}
+  \end{center}
+}
+
+
+\mytext[example.east][servicelvl]{.25\blockwidth}{anchor = west,
+  inner sep = 2pt
+}{
+  \input{images/service_level.tex}
+}
+
+
+\mytext[12.5,8.5]{.2\blockwidth}{anchor = north east,
+  inner sep = 6pt, rectangle, argon orange, thick, draw, fill=argon orange!05
+}{
+  \begin{center}
+    \only<1>{Cost $=?$}
+    \only<2>{Cost $=2$}
+    \only<3>{Cost $=4$}
+    \only<4>{Cost $=3$}
   \end{center}
 }
 
@@ -1078,11 +1049,6 @@
   inner sep = 2pt
 }{
   \begin{itemize}
-    \item Increasing multi-sourcing to face variability of demand
-    \begin{itemize}
-      \item Big industrialization costs, temporary production capacity loss, etc.
-      \item Is it worth it?
-    \end{itemize}
     \item We aim at proposing a model able to answer the following question
     \item[]
   \end{itemize}
@@ -1103,8 +1069,11 @@
     \item Contributions
     \begin{itemize}
       \item A model
-      \item A method to solve it
-      \item Numerical results on real dataset
+      \item A solving method
+      \begin{itemize}
+        \item Validated on real dataset
+      \end{itemize}
+      \item A probabilistic model of demand
     \end{itemize}
   \end{itemize}
 }
@@ -1123,7 +1092,7 @@
   inner sep = 2pt
 }{
   \begin{equation*}
-    \begin{array}{ll@{\qquad}l}
+    \begin{array}{ll@{\quad}l}
       \min\quad & \multicolumn{2}{l}{\ds \sum_{i\in\REF}\sum_{p\in\plants}\affect_p^i \open_p^i}
       \\
       \smallskip
@@ -1133,13 +1102,13 @@
       & \ds \sum_{i\in\REF}\rate_{pt}^i\va\quantity_{pt}^i \leq \capacity_p& \forall t, \forall p
       \\
       \smallskip
-      & \ds m_p^i \open_p^i \le \rate_{pt}^i\va\quantity_{pt}^i \le M_p^i \open_p^i & \forall t, \forall p, \forall i
+      & \ds \lb_p^i \open_p^i \le \rate_{pt}^i\va\quantity_{pt}^i \le \ub_p^i \open_p^i & \forall t, \forall p, \forall i
       \\
       \smallskip
       & \red{\avar_{1-\servicelvl}\bracket{\va\inventory_t^i} \le 0} & \forall t, \forall i
       \\
       \smallskip
-      & \ds \Sfield{\va\quantity_{pt}^i} \subseteq \Sfield{\bracket{\va\demand_{\tau}^i}_{i\in\REF, \tau\in\range{t}}} & \forall t, \forall p, \forall i
+      & \ds \va\quantity_{pt}^i\ \mbox{is}\ \Sfield{\bracket{\va\demand_{\tau}^j}_{j, \tau\le t}}\mbox{--measurable} & \forall p, \forall i
       \\
       \smallskip
       & \ds \open_p^i \in \crbracket{0,1} & \forall t, \forall p, \forall i
@@ -1155,7 +1124,7 @@
   \end{itemize}
 }
 
-\mytext[model.north east]{.38\blockwidth}{anchor = north west,
+\mytext[model.north east][variables]{.39\blockwidth}{anchor = north west,
   inner sep = 2pt
 }{
   \begin{center}
@@ -1165,21 +1134,21 @@
       \\\hline
       $\affect_p^i$ & assignment cost \\
       $\rate_{pt}^i$ & production rate \\
-      $\demand_t^i$ & demand \\
+      $\va\demand_t^i$ & demand \\
       $\capacity_p$ & plant capacity \\
-      $m_p^i$ & minimal production \\
-      $M_p^i$ & maximal production
+      $\lb_p^i$ & minimal production \\
+      $\ub_p^i$ & maximal production
       \\\hline\hline
       \multicolumn{2}{|c|}{variables} \\\hline
       $\open_p^i$ & assignment variable \\
-      $\quantity_{pt}^i$ & produced quantity \\
-      $\inventory_t^i$ & inventory variable
+      $\va\quantity_{pt}^i$ & produced quantity \\
+      $\va\inventory_t^i$ & inventory variable
       \\\hline
     \end{tabular}
   \end{center}
 }
 
-\mytext{.38\blockwidth}{anchor = north west,
+\mytext[variables.south east]{.38\blockwidth}{anchor = north east,
   inner sep = 2pt
 }{
   \begin{itemize}
@@ -1205,10 +1174,10 @@
 }{
   \begin{itemize}
     \item Objective: quantify the risk of a position
-    \item Average value at risk $\ds\avar_{\lambda}\bracket{X} = \frac{1}{\lambda}\int_0^{\lambda}-q_{\gamma}^+\bracket{X}\diff\gamma$
+    %\item Average value at risk $\ds\avar_{\lambda}\bracket{X} = \frac{1}{\lambda}\int_0^{\lambda}-q_{\gamma}^+\bracket{X}\diff\gamma$
+    \item Average value at risk $\ds\avar_{\lambda}\bracket{\va X} = -\espe\sqbracket{\va X\left|\va X \le q^+_{\lambda}(\va X)\right.}$
     \begin{itemize}
-      \item Measures the mean over worst case
-      \item If $\avar_{\lambda}\bracket{X} \le 0$, then $\PP\sqbracket{X \ge 0} \ge 1-\lambda$
+      \item Measures the mean over worst cases
     \end{itemize}
     \item Example with inventory $\inventory_t^i$
   \end{itemize}
@@ -1226,7 +1195,7 @@
   inner sep = 2pt
 }{
   \begin{center}
-    \renewcommand{\arraystretch}{1.5}
+    \renewcommand{\arraystretch}{1.25}
     \begin{tabular*}{.97\linewidth}{@{\extracolsep{\fill}}p{4.2cm}cccc@{\extracolsep{\fill}}}
     \hline
     \multicolumn{1}{c}{Properties} & \multicolumn{4}{c}{Constraints} \\
@@ -1245,6 +1214,12 @@
     \end{tabular*}
     \renewcommand{\arraystretch}{1}
   \end{center}
+
+  \vspace{-.25cm}
+
+  \begin{itemize}
+    \item If $\avar_{\lambda}\bracket{\va X} \le 0$, then $\PP\sqbracket{\va X \ge 0} \ge 1-\lambda$
+  \end{itemize}
 }
 
 \end{myframe}
@@ -1301,15 +1276,29 @@
     \item 2-stage approximation
     \begin{itemize}
       \item 1st stage variables: assigning the ability to produce
-      \item 2nd stage variables: production variable (demand is now observed)
+      \item 2nd stage variables: production variables (demand is now observed over all horizon)
     \end{itemize}
     \item Sampling
     \begin{itemize}
       \item Generate a sample of $m$ scenarios to approximate the distribution of the $\va\demand_t^i$
     \end{itemize}
     \item Linearization of $\avar$ constraint
-    \item []
-    \item We get a mixed integer program solved by
+  \end{itemize}
+}
+
+
+\mytext{.7\blockwidth}{anchor = north west,
+  inner sep = 2pt
+}{
+  \begin{center}\rotatebox{-90}{\Large $\implies$}\end{center}
+}
+
+
+\mytext{\blockwidth}{anchor = north west,
+  inner sep = 2pt
+}{
+  \begin{itemize}
+  \item We get a mixed integer program solved by either
     \begin{itemize}
       \item LP solver (small dataset)
       \item Heuristic (big dataset)
@@ -1321,6 +1310,7 @@
 
 
 
+
 \begin{myframe}[Heuristic to find feasible solution]
 
 \quicker{}{}{
@@ -1328,28 +1318,33 @@
 }
 
 
+
 \mytext[current][heuristic]{\blockwidth}{anchor = north west,
   inner sep = 2pt
 }{
   \begin{itemize}
     \item[]
-    \item Binary search algorithm to find the \textcolor{\maincolor}{smallest $\alpha$} such that \hfill \textcolor{\secondcolor}{(\emph{$N$ iterations})}
+    \item Input: linearized version (S) of multi-sourcing model (big MIP)
+    \item Binary search algorithm on $\alpha \ge 1$ \hfill \textcolor{\secondcolor}{(\emph{$N$ iterations})}
     \begin{itemize}
-      \item Demand is uniformly scaled by $\alpha \geq 1$
-      \item[]
-      \item Deterministic version of the model is feasible
+      \item Create (D), deterministic version of multi-sourcing model (small MIP) where
       \begin{itemize}
-        \item $\avar\bracket{\va\inventory_t^i}$ becomes $\inventory_t^i\ge0$
-        \item Get the best item assignment $\bracket{\open_p^i}_{p,i}$ \hfill \textcolor{\secondcolor}{(\emph{time limit = $\tau$})}
+        \item $\va\demand_t^i$ is replaced by $\alpha\,\espe\sqbracket{\va\demand_t^i}$
+        \item $\avar\bracket{\va\inventory_t^i}$ is replaced by $\inventory_t^i\ge0$
       \end{itemize}
-      \item[]
-      \item MIP previously obtained is feasible with assignment $\bracket{\open_p^i}_{p,i}$
+      \item Solve (D) \hfill \textcolor{\secondcolor}{(\emph{time limit = $\tau$})}
+      \item If (D) is infeasible, then
       \begin{itemize}
-        \item Only continuous variables $\inventory_{t,\omega}^i$ and $\quantity_{t,\omega}^i$ are recomputed ($\omega$ for scenario)
+        \item Decrease $\alpha$
+      \end{itemize}
+      \item Else
+      \begin{itemize}
+        \item Solve (S) with assignment equal to the assignment solution of (D)
+        \item If (S) is infeasible, then increase $\alpha$
+        \item Else, decrease $\alpha$
       \end{itemize}
     \end{itemize}
-    \item[]
-    \item Return item assignment $\bracket{\open_p^i}_{p,i}$
+    \item Return item assignment found for the smallest $\alpha$
   \end{itemize}
 }
 
@@ -1359,12 +1354,11 @@
 
 
 
-
 \subsection{Numerical experiments}
 
 
 
-\begin{myframe}[Data of the instance]
+\begin{myframe}[Instance]
 
 \mytext[current][text]{\blockwidth}{anchor = north west,
   inner sep = 2pt
@@ -1378,9 +1372,9 @@
 \mytext[$(text.south)+(0,-.25)$][numerical]{.95\blockwidth}{anchor = north,
   inner sep = 2pt
 }{
-  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llr@{\extracolsep{\fill}}c@{\extracolsep{\fill}}rr@{\extracolsep{\fill}}c@{\extracolsep{\fill}}r@{\extracolsep{\fill}}}
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}llr@{\extracolsep{5pt}}c@{\extracolsep{5pt}}r@{\extracolsep{\fill}}r@{\extracolsep{5pt}}c@{\extracolsep{5pt}}r@{\extracolsep{\fill}}}
   \hline
-  \multicolumn{2}{c}{Instances characteristics} & \multicolumn{6}{c}{Instances}
+  \multicolumn{2}{c}{Instance characteristics} & \multicolumn{6}{c}{Instances}
   \\
   \cline{3-8}
   && \multicolumn{3}{c}{Mel} & \multicolumn{3}{c}{Lux}
@@ -1392,18 +1386,27 @@
   \\
   Number of time steps & $\horizon$ &&& $3$ &&& $6$
   \\
-  Historical demand & $\tilde{\demand}_t^i$ & $4884$ &--& $19959$ & $0$ &--& $16996$
+  Historical demand & $\tilde{\demand}_t^i$ & $4~884$ &--& $19~959$ & $0$ &--& $16~996$
   \\
-  Capacity of plants & $\capacity_p$ & $6156$ &--& $28969$ & $2213$ &--& $43416$ 
+  Capacity of plants & $\capacity_p$ & $6~156$ &--& $28~969$ & $2~213$ &--& $43~416$ 
   \\
-  Capacity for an item & $M_p^i$ & $1539$ &--& $7242$ & $721$ &--& $12753$ 
+  Capacity for an item & $\ub_p^i$ & $1~539$ &--& $7~242$ & $721$ &--& $12~753$ 
   \\
   Internal production time & $\rate_{pt}^i$ & $0.4$ &--& $1.1$ & $0.4$ &--& $9.0$
   \\
-  Assignment cost & $\affect_p^i$ & $8392$ &--& $82196$ & $3516$ &--& $62234$ 
+  Assignment cost & $\affect_p^i$ & $8~392$ &--& $82~196$ & $3~516$ &--& $62~234$ 
   \\
   \hline
   \end{tabular*}
+}
+
+
+\mytext[0,2]{\blockwidth}{anchor = north west,
+  inner sep = 2pt
+}{
+  \begin{itemize}
+    \item Same probabilistic distribution for demand as in lot-sizing model
+  \end{itemize}
 }
 
 
@@ -1444,200 +1447,215 @@
 
 
 
-\begin{myframe}[Results for Mel instances (without heuristic)]
+\begin{myframe}[Results for Mel instances]
 
 
-\mytext[$(current)+({.505*\blockwidth},0)$]{.99\blockwidth}{anchor = north,
+\mytext[$(current)+({.505*\blockwidth},0)$]{.95\blockwidth}{anchor = north,
   inner sep = 2pt
 }{
   \footnotesize
-  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}c|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|l@{\extracolsep{\fill}}}
-  $\beta$ & \multicolumn{6}{c|}{Volatility} & \multicolumn{1}{c}{Output}
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lc|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|l@{\extracolsep{\fill}}}
+  & $\beta$ & \multicolumn{4}{c|}{Volatility} & \multicolumn{1}{c}{Output}
   \\
-  & \multicolumn{1}{c|}{1\%} & \multicolumn{1}{c|}{5\%} & \multicolumn{1}{c|}{10\%} & \multicolumn{1}{c|}{30\%} & \multicolumn{1}{c|}{50\%} & \multicolumn{1}{c|}{80\%} & 
+  & & \multicolumn{1}{c|}{5\%} & \multicolumn{1}{c|}{30\%} & \multicolumn{1}{c|}{50\%} & \multicolumn{1}{c|}{80\%} & 
+  \\ \hline\hline
+  \multirow{6}{*}{\rotatebox{90}{Solver}} & 70\% & 967 & 1034 & 1134 & 1381 & Objective value \hfill {\scriptsize($\times10^3$)}
+  \\
+  &     & 100.0 & 99.7 & 99.2 & 98.8 & Fill rate service level \hfill {\scriptsize(in \%)}
+  \\ \cline{2-7}
+  &85\% & 957 & 1087 & 1188 & \multicolumn{1}{c|}{$\infty$} & Objective value \hfill {\scriptsize($\times10^3$)}
+  \\
+  &     & 100.0 & 99.9 & 99.6 & \multicolumn{1}{c|}{--} & Fill rate service level \hfill {\scriptsize(in \%)}
+  \\ \cline{2-7}
+  &95\% & 956 & 1173 & 1371 & \multicolumn{1}{c|}{$\infty$} & Objective value \hfill {\scriptsize($\times10^3$)}
+  \\
+  &     & 100.0 & 100.0 & 99.9 & \multicolumn{1}{c|}{--} & Fill rate service level \hfill {\scriptsize(in \%)}
+  \\ \hline\hline
+  \multirow{6}{*}{\rotatebox{90}{Heuristic}} & 70\% & 1176 & 1136 & 1541 & 1640 & Objective value \hfill {\scriptsize($\times10^3$)}
+  \\
+  &      & 100.0 & 99.0 & 99.3 & 98.5 & Fill rate service level \hfill {\scriptsize(in \%)}
+  \\  \cline{2-7}
+  & 85\% & 1134 & 1112 & 1230 & \multicolumn{1}{c|}{$\infty$} & Objective value \hfill {\scriptsize($\times10^3$)}
+  \\
+  &      & 100.0 & 99.5 & 98.7 & \multicolumn{1}{c|}{--} & Fill rate service level \hfill {\scriptsize(in \%)}
+  \\  \cline{2-7}
+  & 95\% & 968 & 1210 & 1396 & \multicolumn{1}{c|}{$\infty$} & Objective value \hfill {\scriptsize($\times10^3$)}
+  \\
+  &     & 100.0 & 99.8 & 99.6 & \multicolumn{1}{c|}{--} & Fill rate service level \hfill {\scriptsize(in \%)}
   \\ \hline
-  70\% & 953 & 967 & 1011 & 1034 & 1134 & 1381 & Solver best value \hfill {\scriptsize($\times10^3$)}
-  \\
-       & 93.8 & 93.5 & 93.3 & 91.2 & 90.1 & 91.4 & $\proba{stock\ge0}$$^1$ \hfill {\scriptsize(in \%)}
-  \\
-       & 99.7 & 100.0 & 100.0 & 98.7 & 97.5 & 97.5 & Cycle service level$^2$ \hfill {\scriptsize(in \%)}
-  \\
-       & 100.0 & 100.0 & 100.0 & 99.7 & 99.2 & 98.8 & Fill rate service level$^2$ \hfill {\scriptsize(in \%)}
   \\ \hline
-  85\% & 957 & 957 & 1000 & 1087 & 1188 & \multicolumn{1}{c|}{$\infty$} & Solver best value \hfill {\scriptsize($\times10^3$)}
-  \\ \cdashline{2-8}[2pt/2pt]
-       & 17.5 & 15.0 & 18.1 & 17.7 & 11.3 & \multicolumn{1}{c|}{--} & GAP (best known bound) \hfill {\scriptsize(in \%)}
-  \\
-       & 790 & 813 & 819 & 895 & 1054 & \multicolumn{1}{c|}{--} & Solver lower bound \hfill {\scriptsize($\times10^3$)}
-  \\
-       & 1200 & 1200 & 1200 & 1200 & 1200 & \multicolumn{1}{c|}{--} & Time for bound \hfill {\scriptsize(in s)}
-  \\ \cdashline{2-8}[2pt/2pt]
-       & 98.5 & 98.1 & 97.6 & 96.5 & 95.9 & \multicolumn{1}{c|}{--} & $\proba{stock\ge0}$$^1$ \hfill {\scriptsize(in \%)}
-  \\
-       & 100.0 & 100.0 & 100.0 & 99.4 & 98.6 & \multicolumn{1}{c|}{--} & Cycle service level$^2$ \hfill {\scriptsize(in \%)}
-  \\
-       & 100.0 & 100.0 & 100.0 & 99.9 & 99.6 & \multicolumn{1}{c|}{--} & Fill rate service level$^2$ \hfill {\scriptsize(in \%)}
-  \\ \hline
-  95\% & 954 & 956 & 997 & 1173 & 1371 & \multicolumn{1}{c|}{$\infty$} & Solver best value \hfill {\scriptsize($\times10^3$)}
-  \\
-       & 99.6 & 99.6 & 99.3 & 99.0 & 99.0 & \multicolumn{1}{c|}{--} & $\proba{stock\ge0}$$^1$ \hfill {\scriptsize(in \%)}
-  \\
-       & 100.0 & 100.0 & 99.8 & 99.8 & 99.6 & \multicolumn{1}{c|}{--} & Cycle service level$^2$ \hfill {\scriptsize(in \%)}
-  \\
-       & 100.0 & 100.0 & 100.0 & 100.0 & 99.9 & \multicolumn{1}{c|}{--} & Fill rate service level$^2$ \hfill {\scriptsize(in \%)}
+  \multicolumn{2}{l|}{Solver} & 15.0 & 17.7 & 11.3 & \multicolumn{1}{c|}{--} & Gap (for $\servicelvl=85\%$) \hfill {\scriptsize(in \%)}
+  \\  \cline{1-6}
+  \multicolumn{2}{l|}{Heuristic} & 28.3 & 19.5 & 14.3 & \multicolumn{1}{c|}{--} & 
   \\ \hline
   \end{tabular*}
-  \scriptsize
-  $^1$In-sample probability of keeping positive stock
-
-  $^2$Out-of-sample evaluation of service levels
 }
+
 
 
 \end{myframe}
 
 
-\begin{myframe}[Results for Mel instances (with heuristic)]
+\begin{myframe}[Results for Lux instances]
 
 
-\mytext[$(current)+({.505*\blockwidth},0)$]{.99\blockwidth}{anchor = north,
+
+\mytext[$(current)+({.505*\blockwidth},0)$]{.95\blockwidth}{anchor = north,
   inner sep = 2pt
 }{
+  % \tbc
+  % \begin{itemize}
+  %   \item Objective
+  %   \item multi-sourcing rate
+  %   \item evaluation time
+  %   \item fill rate
+  %   \item bound and time
+  % \end{itemize}
   \footnotesize
-  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}c|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|l@{\extracolsep{\fill}}}
-  $\beta$ & \multicolumn{6}{c|}{Volatility} & \multicolumn{1}{c}{Output}
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lc|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|l@{\extracolsep{\fill}}}
+  & $\beta$ & \multicolumn{4}{c|}{Volatility} & \multicolumn{1}{c}{Output}
   \\
-  & \multicolumn{1}{c|}{1\%} & \multicolumn{1}{c|}{5\%} & \multicolumn{1}{c|}{10\%} & \multicolumn{1}{c|}{30\%} & \multicolumn{1}{c|}{50\%} & \multicolumn{1}{c|}{80\%} & 
+  & & \multicolumn{1}{c|}{5\%} & \multicolumn{1}{c|}{30\%} & \multicolumn{1}{c|}{50\%} & \multicolumn{1}{c|}{80\%} & 
+  \\ \hline\hline
+  \multirow{9}{*}{\rotatebox{90}{Heuristic}} & 85\% & 1409 & 1516 & 1708 & 1997 & Objective value \hfill {\scriptsize($\times10^3$)}
+  \\ \cdashline{3-7}
+  &     & 23.0 & 21.0 & 24.0 & 31.0 & Multi-sourced items \hfill {\scriptsize(in \%)}
+  \\
+  &     & 21.0 & 17.0 & 20.0 & 25.0 & \multicolumn{1}{c}{(on two plants)}
+  \\
+  &     & 3 & 3 & 3 & 4 & Multi-sourcing (max)
+  \\ \cdashline{3-7}
+  &     & 24.1 & 24.7 & \multicolumn{1}{c|}{--} & \multicolumn{1}{c|}{--} & Gap \hfill {\scriptsize(in \%)}
+  \\
+  &     & 1070 & 1142 & \multicolumn{1}{c|}{--} & \multicolumn{1}{c|}{--} & Cont. relax. \hfill {\scriptsize($\times10^3$)}
+  \\
+  &     & 8.0 & 14.3 & 24.0 & 24.0 & Time for bound \hfill {\scriptsize(in h)}
+  \\ \cdashline{3-7}
+  &     & Limit & Yes & Yes & Yes & Feasibility
+  \\
+  &     & \multicolumn{1}{c|}{--} & 89.4 & 94.0 & 94.6 & Fill rate service level \hfill {\scriptsize(in \%)}
+  \\
+  &     & 24.0 & 1.0 & 1.0 & 0.8 & Evaluation time \hfill {\scriptsize(in h)}
   \\ \hline
-  70\% & 1152 & 1176 & 1156 & 1136 & 1541 & 1640 & Heuristic value \hfill {\scriptsize($\times10^3$)}
-  \\
-       & 95.5 & 93.8 & 92.7 & 89.7 & 88.8 & 90.1 & $\proba{stock\ge0}$$^1$ \hfill {\scriptsize(in \%)}
-  \\
-       & 100.0 & 100.0 & 100.0 & 99.8 & 99.8 & 99.3 & Cycle service level$^2$ \hfill {\scriptsize(in \%)}
-  \\
-       & 100.0 & 100.0 & 100.0 & 99.0 & 99.3 & 98.5 & Fill rate service level$^2$ \hfill {\scriptsize(in \%)}
-  \\ \hline
-  85\% & 1152 & 1134 & 1146 & 1112 & 1230 & \multicolumn{1}{c|}{$\infty$} & Heuristic value \hfill {\scriptsize($\times10^3$)}
-  \\ \cdashline{2-8}[2pt/2pt]
-       & 31.4 & 28.3 & 28.5 & 19.5 & 14.3 & \multicolumn{1}{c|}{--} & GAP (best known bound) \hfill {\scriptsize(in \%)}
-  \\
-       & 673 & 707 & 686 & 797 & 900 & 1144 & Continuous relaxation \hfill {\scriptsize($\times10^3$)}
-  \\
-       & 3.8 & 13.8 & 3.5 & 2.4 & 13.7 & 3.6 & Time for bound \hfill {\scriptsize(in s)}
-  \\ \cdashline{2-8}[2pt/2pt]
-       & 97.7 & 97.2 & 96.6 & 96.2 & 95.7 & \multicolumn{1}{c|}{--} & $\proba{stock\ge0}$$^1$ \hfill {\scriptsize(in \%)}
-  \\
-       & 100.0 & 100.0 & 100.0 & 99.9 & 99.6 & \multicolumn{1}{c|}{--} & Cycle service level$^2$ \hfill {\scriptsize(in \%)}
-  \\
-       & 100.0 & 100.0 & 100.0 & 99.5 & 98.7 & \multicolumn{1}{c|}{--} & Fill rate service level$^2$ \hfill {\scriptsize(in \%)}
-  \\ \hline
-  95\% & 1152 & 968 & 1021 & 1210 & 1396 & \multicolumn{1}{c|}{$\infty$} & Heuristic value \hfill {\scriptsize($\times10^3$)}
-  \\
-       & 99.2 & 99.8 & 99.8 & 99.0 & 99.1 & \multicolumn{1}{c|}{--} & $\proba{stock\ge0}$$^1$ \hfill {\scriptsize(in \%)}
-  \\
-       & 100.0 & 100.0 & 100.0 & 100.0 & 99.9 & \multicolumn{1}{c|}{--} & Cycle service level$^2$ \hfill {\scriptsize(in \%)}
-  \\
-       & 100.0 & 100.0 & 100.0 & 99.8 & 99.6 & \multicolumn{1}{c|}{--} & Fill rate service level$^2$ \hfill {\scriptsize(in \%)}
-  \\ \hline
-  \end{tabular*}
-  \scriptsize
-  $^1$In-sample probability of keeping positive stock
+\end{tabular*}
 
-  $^2$Out-of-sample evaluation of service levels
+\begin{itemize}
+  \item No results with the LP solver in 24h
+  \item[]
+  \item Current multi-sourcing in Lux
+  \begin{itemize}
+    \item Cost $=6631$
+  \end{itemize}
+\end{itemize}
+}
+
+
+\mytext[4.3,0.65][text]{\blockwidth}{anchor = south west,
+  inner sep = 2pt
+}{
+  \input{images/current_multi-sourcing.tikz}
 }
 
 \end{myframe}
 
+\subsection{Conclusion}
 
-\begin{myframe}[Results for Lux instances (with heuristic)]
-
-
-\mytext[$(current)+({.505*\blockwidth},0)$]{.99\blockwidth}{anchor = north,
-  inner sep = 2pt
-}{
-  \footnotesize
-  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}c|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|l@{\extracolsep{\fill}}}
-  $\beta$ & \multicolumn{6}{c|}{Volatility} & \multicolumn{1}{c}{Output}
-  \\
-  & \multicolumn{1}{c|}{1\%} & \multicolumn{1}{c|}{5\%} & \multicolumn{1}{c|}{10\%} & \multicolumn{1}{c|}{30\%} & \multicolumn{1}{c|}{50\%} & \multicolumn{1}{c|}{80\%} & 
-  \\ \hline
-  70\% & 1392 & 1409 & 1420 & 1476 & 1624 & 1861 & Heuristic value \hfill {\scriptsize($\times10^3$)}
-  \\
-       & 99.4 & 99.3 & 99.2 & 98.7 & 98.6 & 98.5 & $\proba{stock\ge0}$$^1$ \hfill {\scriptsize(in \%)}
-  \\
-       & 80.2 & 80.4 & 80.6 & 81.1 & 81.3 & 82.0 & Cycle service level$^2$ \hfill {\scriptsize(in \%)}
-  \\
-       & 87.2 & 87.1 & 86.8 & 86.5 & 88.0 & 87.3 & Fill rate service level$^2$ \hfill {\scriptsize(in \%)}
-  \\ \hline
-  85\% & 1392 & 1409 & 1407 & 1516 & 1708 & 1997 & Heuristic value \hfill {\scriptsize($\times10^3$)}
-  \\ \cdashline{2-8}[2pt/2pt]
-       & \multicolumn{1}{c|}{--} & 24.1 & 22.3 & 24.7 & \multicolumn{1}{c|}{--} & \multicolumn{1}{c|}{--} & GAP (best known bound) \hfill {\scriptsize(in \%)}
-  \\
-       & \multicolumn{1}{c|}{--} & 1070 & 1084 & 1142 & \multicolumn{1}{c|}{--} & \multicolumn{1}{c|}{--} & Continuous relaxation \hfill {\scriptsize($\times10^3$)}
-  \\
-       & 86400 & 28728 & 31277 & 51399 & 86400 & 86400 & Time for bound \hfill {\scriptsize(in s)}
-  \\ \cdashline{2-8}[2pt/2pt]
-       & 99.9 & 99.8 & 99.8 & 99.6 & 99.5 & 99.4 & $\proba{stock\ge0}$$^1$ \hfill {\scriptsize(in \%)}
-  \\
-       & 80.2 & 80.4 & 80.6 & 81.1 & 82.0 & 81.1 & Cycle service level$^2$ \hfill {\scriptsize(in \%)}
-  \\
-       & 87.2 & 87.0 & 86.3 & 87.8 & 87.2 & 87.6 & Fill rate service level$^2$ \hfill {\scriptsize(in \%)}
-  \\ \hline
-  95\% & 1392 & 1420 & 1421 & 1624 & 1900 & 2382 & Heuristic value \hfill {\scriptsize($\times10^3$)}
-  \\
-       & 100.0 & 100.0 & 99.9 & 99.9 & 99.9 & 99.9 & $\proba{stock\ge0}$$^1$ \hfill {\scriptsize(in \%)}
-  \\
-       & 80.2 & 80.7 & 80.8 & 81.3 & 81.8 & 81.9 & Cycle service level$^2$ \hfill {\scriptsize(in \%)}
-  \\
-       & 87.2 & 86.7 & 88.0 & 88.3 & 88.2 & 87.5 & Fill rate service level$^2$ \hfill {\scriptsize(in \%)}
-  \\ \hline
-  \end{tabular*}
-  \scriptsize
-  $^1$In-sample probability of keeping positive stock
-
-  $^2$Out-of-sample evaluation of service levels
-}
-
-
-\end{myframe}
-
-
-
-\begin{myframe}[Conclusion and bibliography]
+\begin{myframe}[Conclusion and perspectives]
 
 \mytext[current][bibliography]{\blockwidth}{anchor = north west,
   inner sep = 2pt
 }{
   \begin{itemize}
-    \item We model a supply-chain optimization problem
+    \item Conclusion
     \begin{itemize}
-      \item We propose a risk constraint to deal with service level
+      \item We propose a risk constraint to take into account service level
       \item We propose a method to solve it leading to a MIP formulation
+      \item We show its efficiency on real dataset
     \end{itemize}
-    \item Future works
+    \item[]
+    \item Unpresented works
     \begin{itemize}
-      \item Decomposition methods (Bender, L-Shaped) to solve the MIP
-      \item Selecting a small representative set of scenarios to reduce MIP size
+      \item Alternative model maximizing service level subject to limited investment
+    \end{itemize}
+    \item[]
+    \item Perspectives
+    \begin{itemize}
+      \item Decomposition methods (Bender) to solve the MIP
+      \item Work on sampling method
     \end{itemize}
   \end{itemize}
-
-
-  % La bibliographie
-  \bibliographystyle{apalike}
-  \bibliography{template_diapo}
-}
-
-\mytext[$.5*(bibliography.south)+.5*(bibliography.south |- 0.,\footerheight)$]{\blockwidth}{anchor = center,
-  inner sep = 2pt
-}{
-  \begin{center}
-    {\huge Thanks for your attention!}
-  \end{center}
 }
 
 \end{myframe}
 
 
+\section{Continuous-time inventory model (3')}
+
+
+\begin{myframe}[Continuous-time inventory model (Overview)]
+
+\mytext[current][bibliography]{\blockwidth}{anchor = north west,
+  inner sep = 2pt
+}{
+  \begin{itemize}
+    \item Close to \emph{Economic Production Quantity} model but with bound on the number of setups
+
+    \vspace{-.5cm}
+
+    \begin{center}
+    \input{images/campaign_size_effect.tikz}
+    \end{center}
+
+    \vspace{-.5cm}
+
+    
+    \item Closed-form formula in deterministic and stochastic cases
+
+    \vspace{-.25cm}
+
+    $$\mbox{\small$\cover_i^*= \frac{\sum_{j\in\REF}\sqrt{\holding_j\demand_j\bracket{1-\frac{\demand_j}{\rate_j}}}}{\nbsetups\sqrt{\holding_i\demand_i\bracket{1-\frac{\demand_i}{\rate_i}}}}\qquad\forall i\in\REF,$}$$
+
+    \vspace{-.25cm}
+
+    \item Extension to multi-line case
+    \begin{itemize}
+      \item Minimization of a concave function over a polyhedron
+    \end{itemize}
+  \end{itemize}
+}
+
+
+\end{myframe}
+
+
+\begin{myframe}[]
+
+\mytext[0,5]{\blockwidth}{anchor = west,
+  inner sep = 2pt
+}{
+  \begin{center}
+    \Huge \textcolor{argon orange}{Thank you for your attention!}
+  \end{center}
+}
+
+
+\end{myframe}
+
+
+\addtocounter{framenumber}{-1}
+
+\begin{myframe}[Bibliography]
+
+\mytext[current][bibliography]{\blockwidth}{anchor = north west,
+  inner sep = 2pt
+}{
+  % La bibliographie
+  \bibliographystyle{apalike}
+  \bibliography{template_diapo}
+}
+
+
+\end{myframe}
 
 
 % \appendix

@@ -1,0 +1,4 @@
+Det_holding_cost	Det_fill_rate_service_level	2SS_holding_cost	2SS_fill_rate_service_level	cover_size_holding_cost	cover_size_fill_rate_service_level	lot_size_holding_cost	lot_size_fill_rate_service_level	legend
+17.50	77.83	7.10	62.65	28.97	67.25	61.40	81.34	85%
+20.20	83.28	14.99	79.27	28.97	67.25	62.33	81.21	95%
+27.77	87.57	26.75	86.90	28.97	67.25	62.77	81.21	98%
