@@ -47,6 +47,10 @@
 \usepackage[version=3]{mhchem} %Chimie
 \usepackage{siunitx}  %Utilisation des unités SI
 
+\renewcommand{\le}{\leqslant}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\ge}{\geqslant}
+\renewcommand{\geq}{\geqslant}
 
 %Pour encadrer
 \usepackage{fancybox}
