@@ -13,12 +13,12 @@
                  },
                  %xtick={75,80,85,90,95,100}, xticklabels={75,80,85,90,95,100},
                  xlabel={Fill rate service level (in \%)},
-                 xmin=60, xmax=90,
+                 xmin=60.5, xmax=95,
                  %xmode = log, % logarithmic x axis
-                 %ytick={0,2,4,6,8,10}, %yticklabels={1e+06,5e+06,1e+07},
+                 ytick={0,250,500,750,1000}, yticklabels={0,250,500,750,1000},
                  ylabel={Holding costs (in k\euro)}, scaled y ticks = false, ylabel near ticks,
                  %xmin=0, xmax=2.5,
-                 %ymin=0, ymax=11
+                 ymin=0, ymax=1200
                  ]
     % Two-stage-stochastic
     \DrawMix[argon orange]{images/simul_line-5_volatility-50_mix-safety.csv}{2SS}
@@ -28,26 +28,38 @@
     \DrawMix[argon gray!50]{images/simul_line-5_volatility-50_mix-safety.csv}{lot_size}
 
     % Two-stage-stochastic
-    \draw (axis cs:62.65,7.1)   node[below,anchor=north,argon orange] {85\%}
-                                node[circle,fill=argon orange, anchor = center,scale=.75] {};
-    \draw (axis cs:79.27,14.99) node[inner sep=4pt,below,anchor=north,argon orange] {95\%}
-                                node[circle,fill=argon orange, anchor = center,scale=.75] {};
-    \draw (axis cs:86.9,26.75)  node[inner sep=4pt,below,anchor=130,argon orange] {98\%}
-                                node[circle,fill=argon orange, anchor = center,scale=.75] {};
+    \draw (axis cs:62.55,91.73)  node[below,anchor=north,argon orange] {85\%}
+                                 node[circle,fill=argon orange, anchor = center,scale=.75] {};
+    \draw (axis cs:68.61,114.28) node[inner sep=4pt,below,anchor=north,argon orange] {90\%}
+                                 node[circle,fill=argon orange, anchor = center,scale=.75] {};
+    \draw (axis cs:79.59,197.66) node[inner sep=4pt,below,anchor=north,argon orange] {95\%}
+                                 node[circle,fill=argon orange, anchor = center,scale=.75] {};
+    \draw (axis cs:87.09,349.13) node[inner sep=4pt,below,anchor=130,argon orange] {98\%}
+                                 node[circle,fill=argon orange, anchor = center,scale=.75] {};
+    \draw (axis cs:90.38,464.00) node[inner sep=4pt,below,anchor=130,argon orange] {99\%}
+                                 node[circle,fill=argon orange, anchor = center,scale=.75] {};
     % Deterministic
-    \draw (axis cs:77.83,17.5)  node[inner sep=4pt,below,anchor=south,argon orange!65] {85\%}
-                                node[circle,fill=argon orange!65, anchor = center,scale=.75] {};
-    \draw (axis cs:83.28,20.2)  node[inner sep=4pt,below,anchor=south,argon orange!65] {95\%}
-                                node[circle,fill=argon orange!65, anchor = center,scale=.75] {};
-    \draw (axis cs:87.57,27.77) node[inner sep=4pt,below,anchor=south,argon orange!65] {98\%}
-                                node[circle,fill=argon orange!65, anchor = center,scale=.75] {};
+    \draw (axis cs:77.82,227.45) node[inner sep=4pt,below,anchor=-40,argon orange!65] {85\%}
+                                 node[circle,fill=argon orange!65, anchor = center,scale=.75] {};
+    \draw (axis cs:78.97,229.59) node[inner sep=4pt,below,anchor=-120,argon orange!65] {90\%}
+                                 node[circle,fill=argon orange!65, anchor = center,scale=.75] {};
+    \draw (axis cs:83.29,260.66) node[inner sep=4pt,below,anchor=south,argon orange!65] {95\%}
+                                 node[circle,fill=argon orange!65, anchor = center,scale=.75] {};
+    \draw (axis cs:87.54,360.70) node[inner sep=4pt,below,anchor=-55,argon orange!65] {98\%}
+                                 node[circle,fill=argon orange!65, anchor = center,scale=.75] {};
+    \draw (axis cs:89.07,422.78) node[inner sep=4pt,below,anchor=-80,argon orange!65] {99\%}
+                                 node[circle,fill=argon orange!65, anchor = center,scale=.75] {};
     % Lot-size
-    \draw (axis cs:81.34,61.4)  node[inner sep=4pt,below,anchor=70,argon gray!75] {85\%}
-                                node[circle,fill=argon gray!75, anchor = center,scale=.75] {};
-    \draw (axis cs:81.21,62.33) node[inner sep=4pt,below,anchor=west,argon gray!75] {95\%}
-                                node[circle,fill=argon gray!75, anchor = center,scale=.75] {};
-    \draw (axis cs:81.21,62.77) node[inner sep=4pt,below,anchor=-70,argon gray!75] {98\%}
-                                node[circle,fill=argon gray!75, anchor = center,scale=.75] {};
+    \draw (axis cs:81.34,798.23) node[inner sep=4pt,below,anchor=north east,argon gray!75] {85\%}
+                                 node[circle,fill=argon gray!75, anchor = center,scale=.75] {};
+    \draw (axis cs:81.2,805.96)  node[inner sep=4pt,below,anchor=163,argon gray!75] {90\%}
+                                 node[circle,fill=argon gray!75, anchor = center,scale=.75] {};
+    \draw (axis cs:81.21,810.35) node[inner sep=4pt,below,anchor=east,argon gray!75] {95\%}
+                                 node[circle,fill=argon gray!75, anchor = center,scale=.75] {};
+    \draw (axis cs:81.21,815.98) node[inner sep=4pt,below,anchor=-163,argon gray!75] {98\%}
+                                 node[circle,fill=argon gray!75, anchor = center,scale=.75] {};
+    \draw (axis cs:81.23,815.84) node[inner sep=4pt,below,anchor=south east,argon gray!75] {99\%}
+                                 node[circle,fill=argon gray!75, anchor = center,scale=.75] {};
     \end{axis}
   \end{scope}
 \end{tikzpicture}

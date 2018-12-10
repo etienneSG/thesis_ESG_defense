@@ -16,9 +16,9 @@
                  %xmin=75,
                  xmax=90,
                  %xmode = log, % logarithmic x axis
-                 %ytick={0,20,40,60,80,100}, %yticklabels={1e+06,5e+06,1e+07},
+                 ytick={0,250,500,750,1000}, yticklabels={0,250,500,750,1000},
                  ylabel={Holding costs (in k\euro)}, scaled y ticks = false, ylabel near ticks,
-                 %ymin=0, ymax=100
+                 ymin=0, ymax=1200
                  ]
     % Two-stage stochastic
     \DrawCloud[argon orange]{images/simul_line-5_volatility-50_service-95.csv}{2SS}

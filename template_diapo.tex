@@ -456,7 +456,7 @@
       \item Exact solving is not yet an option
       \begin{itemize}
         \item Multi-stage with $\horizon\sim15$
-        \item Huge number of variables (even uncountable)
+        \item Huge number of variables
         \item We want reasonable computation time
       \end{itemize}
     \item[]
@@ -645,26 +645,26 @@
   Instances &
   \multicolumn{6}{c}{Instance characteristics}
   \\ \cline{2-7} \rule{0pt}{.9\normalbaselineskip}
-  & $\card{\REF}$
+  & \red{$\card{\REF}$}
   & $\max\bracket{\espe\sqbracket{\va\demand_t^i}}$
   & \multicolumn{1}{c}{$\capacity$}
-  & \multicolumn{1}{c}{$\nbsetups$}
+  & \multicolumn{1}{c}{\red{$\nbsetups$}}
   & \multicolumn{1}{c}{$\holding^i$}
-  & \multicolumn{1}{c}{Workload}
+  & \multicolumn{1}{c}{\red{Workload}}
   \\\hline
-  $L_0$ & $21$ & $3780$ & $8518$ & $7$ & $45$--$88$ & $74\%$
+  $L_0$ & \red{$21$} & $3~780$ & $8~518$ & \red{$7$} & $45$ -- $88$ & \red{$74\%$}
   \\
-  $L_1$ & $30$ & $4122$ & $13326$ & $12$ & $52$--$82$ & $52\%$
+  $L_1$ & \red{$30$} & $4~122$ & $13~326$ & \red{$12$} & $52$ -- $82$ & \red{$52\%$}
   \\
-  $L_2$ & $21$ & $4992$ & $10562$ & $7$ & $35$--$61$ & $61\%$
+  $L_2$ & \red{$21$} & $4~992$ & $10~562$ & \red{$7$} & $35$ -- $61$ & \red{$61\%$}
   \\
-  $L_3$ & $13$ & $6220$ & $10394$ & $5$ & $22$--$30$ & $65\%$
+  $L_3$ & \red{$13$} & $6~220$ & $10~394$ & \red{$5$} & $22$ -- $30$ & \red{$65\%$}
   \\
-  $L_4$ & $18$ & $10584$ & $62164$ & $8$ & $12$--$14$ & $35\%$
+  $L_4$ & \red{$18$} & $10~584$ & $62~164$ & \red{$8$} & $12$ -- $14$ & \red{$35\%$}
   \\
-  $L_5$ & $12$ & $11772$ & $7902$ & $6$ & $15$--$17$ & $98\%$
+  $L_5$ & \red{$12$} & $11~772$ & $7~902$ & \red{$6$} & $15$ -- $17$ & \red{$98\%$}
   \\
-  $L_6$ & $22$ & $8640$ & $13299$ & $8$ & $16$--$23$ & $98\%$
+  $L_6$ & \red{$22$} & $8~640$ & $13~299$ & \red{$8$} & $16$ -- $23$ & \red{$98\%$}
   \\\hline
   \end{tabular*}
 }
@@ -721,7 +721,7 @@ inner sep = 2pt
   inner sep = 2pt
 }{
   \begin{itemize}
-    \item Objective function in M\euro
+    \item Objective function in k\euro
     \item Mean over 30 runs for objective fill rate service level $=95\%$
     \begin{itemize}
       \item Computing time limit for each week $=120$s
@@ -814,7 +814,7 @@ inner sep = 2pt
   inner sep = 2pt
 }{
   \begin{itemize}
-    \item Real inventory cost is the main part of objective function
+    \item Real inventory cost is the main part of objective function for small objective service levels
     \item Backorder and fill rate service level
     \begin{itemize}
       \item Argon's heuristic always has very high service level at the expense of high inventory
@@ -1303,11 +1303,11 @@ surrogate backorder costs
   && \multicolumn{3}{c}{Mel} & \multicolumn{3}{c}{Lux}
   \\
   \hline
-  Number of plants & $\card{\plants}$ &&& $4$ &&& $27$
+  \red{Number of plants} & \red{$\card{\plants}$} &&& \red{$4$} &&& \red{$27$}
   \\
-  Number of items & $\card{\REF}$ &&& $11$ &&& $100$
+  \red{Number of items} & \red{$\card{\REF}$} &&& \red{$11$} &&& \red{$100$}
   \\
-  Number of time steps & $\horizon$ &&& $3$ &&& $6$
+  \red{Number of time steps} & \red{$\horizon$} &&& \red{$3$} &&& \red{$6$}
   \\
   Historical demand & $\tilde{\demand}_t^i$ & $4~884$ &--& $19~959$ & $0$ &--& $16~996$
   \\
@@ -1317,7 +1317,7 @@ surrogate backorder costs
   \\
   Internal production time & $\rate_{pt}^i$ & $0.4$ &--& $1.1$ & $0.4$ &--& $9.0$
   \\
-  Assignment cost & $\affect_p^i$ & $8~392$ &--& $82~196$ & $3~516$ &--& $62~234$ 
+  \red{Assignment cost} & \red{$\affect_p^i$} & \red{$8~392$} &\red{--}& \red{$82~196$} & \red{$3~516$} &\red{--}& \red{$62~234$} 
   \\
   \hline
   \end{tabular*}
@@ -1365,50 +1365,103 @@ surrogate backorder costs
 \end{myframe}
 
 
+% \begin{myframe}[Results for Mel instances]
+
+% \mytext[$(current)+({.505*\blockwidth},0)$]{.95\blockwidth}{anchor = north,
+%   inner sep = 2pt
+% }{
+%   \footnotesize
+%   \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lc|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|l@{\extracolsep{\fill}}}
+%   & $\beta$ & \multicolumn{4}{c|}{Volatility} & \multicolumn{1}{c}{Output}
+%   \\
+%   & & \multicolumn{1}{c|}{5\%} & \multicolumn{1}{c|}{30\%} & \multicolumn{1}{c|}{50\%} & \multicolumn{1}{c|}{80\%} & 
+%   \\ \hline\hline
+%   \multirow{6}{*}{\rotatebox{90}{Solver}} & 70\% & 967 & 1034 & 1134 & 1381 & Objective value \hfill {\scriptsize($\times10^3$)}
+%   \\
+%   &     & 100.0 & 99.7 & 99.2 & 98.8 & Fill rate service level \hfill {\scriptsize(in \%)}
+%   \\ \cline{2-7}
+%   &85\% & 957 & 1087 & 1188 & \multicolumn{1}{c|}{$\infty$} & Objective value \hfill {\scriptsize($\times10^3$)}
+%   \\
+%   &     & 100.0 & 99.9 & 99.6 & \multicolumn{1}{c|}{--} & Fill rate service level \hfill {\scriptsize(in \%)}
+%   \\ \cline{2-7}
+%   &95\% & 956 & 1173 & 1371 & \multicolumn{1}{c|}{$\infty$} & Objective value \hfill {\scriptsize($\times10^3$)}
+%   \\
+%   &     & 100.0 & 100.0 & 99.9 & \multicolumn{1}{c|}{--} & Fill rate service level \hfill {\scriptsize(in \%)}
+%   \\ \hline\hline
+%   \multirow{6}{*}{\rotatebox{90}{Heuristic}} & 70\% & 1176 & 1136 & 1541 & 1640 & Objective value \hfill {\scriptsize($\times10^3$)}
+%   \\
+%   &      & 100.0 & 99.0 & 99.3 & 98.5 & Fill rate service level \hfill {\scriptsize(in \%)}
+%   \\  \cline{2-7}
+%   & 85\% & 1134 & 1112 & 1230 & \multicolumn{1}{c|}{$\infty$} & Objective value \hfill {\scriptsize($\times10^3$)}
+%   \\
+%   &      & 100.0 & 99.5 & 98.7 & \multicolumn{1}{c|}{--} & Fill rate service level \hfill {\scriptsize(in \%)}
+%   \\  \cline{2-7}
+%   & 95\% & 968 & 1210 & 1396 & \multicolumn{1}{c|}{$\infty$} & Objective value \hfill {\scriptsize($\times10^3$)}
+%   \\
+%   &     & 100.0 & 99.8 & 99.6 & \multicolumn{1}{c|}{--} & Fill rate service level \hfill {\scriptsize(in \%)}
+%   \\ \hline
+%   \\ \hline
+%   \multicolumn{2}{l|}{Solver} & 15.0 & 17.7 & 11.3 & \multicolumn{1}{c|}{--} & Gap (for $\servicelvl=85\%$) \hfill {\scriptsize(in \%)}
+%   \\  \cline{1-6}
+%   \multicolumn{2}{l|}{Heuristic} & 28.3 & 19.5 & 14.3 & \multicolumn{1}{c|}{--} & 
+%   \\ \hline
+%   \end{tabular*}
+% }
+
+% \end{myframe}
+
+
 \begin{myframe}[Results for Mel instances]
 
-\mytext[$(current)+({.505*\blockwidth},0)$]{.95\blockwidth}{anchor = north,
+
+\mytext[.51\blockwidth,8.5][legend]{.6\blockwidth}{anchor = north,
   inner sep = 2pt
 }{
-  \footnotesize
-  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lc|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|l@{\extracolsep{\fill}}}
-  & $\beta$ & \multicolumn{4}{c|}{Volatility} & \multicolumn{1}{c}{Output}
-  \\
-  & & \multicolumn{1}{c|}{5\%} & \multicolumn{1}{c|}{30\%} & \multicolumn{1}{c|}{50\%} & \multicolumn{1}{c|}{80\%} & 
-  \\ \hline\hline
-  \multirow{6}{*}{\rotatebox{90}{Solver}} & 70\% & 967 & 1034 & 1134 & 1381 & Objective value \hfill {\scriptsize($\times10^3$)}
-  \\
-  &     & 100.0 & 99.7 & 99.2 & 98.8 & Fill rate service level \hfill {\scriptsize(in \%)}
-  \\ \cline{2-7}
-  &85\% & 957 & 1087 & 1188 & \multicolumn{1}{c|}{$\infty$} & Objective value \hfill {\scriptsize($\times10^3$)}
-  \\
-  &     & 100.0 & 99.9 & 99.6 & \multicolumn{1}{c|}{--} & Fill rate service level \hfill {\scriptsize(in \%)}
-  \\ \cline{2-7}
-  &95\% & 956 & 1173 & 1371 & \multicolumn{1}{c|}{$\infty$} & Objective value \hfill {\scriptsize($\times10^3$)}
-  \\
-  &     & 100.0 & 100.0 & 99.9 & \multicolumn{1}{c|}{--} & Fill rate service level \hfill {\scriptsize(in \%)}
-  \\ \hline\hline
-  \multirow{6}{*}{\rotatebox{90}{Heuristic}} & 70\% & 1176 & 1136 & 1541 & 1640 & Objective value \hfill {\scriptsize($\times10^3$)}
-  \\
-  &      & 100.0 & 99.0 & 99.3 & 98.5 & Fill rate service level \hfill {\scriptsize(in \%)}
-  \\  \cline{2-7}
-  & 85\% & 1134 & 1112 & 1230 & \multicolumn{1}{c|}{$\infty$} & Objective value \hfill {\scriptsize($\times10^3$)}
-  \\
-  &      & 100.0 & 99.5 & 98.7 & \multicolumn{1}{c|}{--} & Fill rate service level \hfill {\scriptsize(in \%)}
-  \\  \cline{2-7}
-  & 95\% & 968 & 1210 & 1396 & \multicolumn{1}{c|}{$\infty$} & Objective value \hfill {\scriptsize($\times10^3$)}
-  \\
-  &     & 100.0 & 99.8 & 99.6 & \multicolumn{1}{c|}{--} & Fill rate service level \hfill {\scriptsize(in \%)}
-  \\ \hline
-  \\ \hline
-  \multicolumn{2}{l|}{Solver} & 15.0 & 17.7 & 11.3 & \multicolumn{1}{c|}{--} & Gap (for $\servicelvl=85\%$) \hfill {\scriptsize(in \%)}
-  \\  \cline{1-6}
-  \multicolumn{2}{l|}{Heuristic} & 28.3 & 19.5 & 14.3 & \multicolumn{1}{c|}{--} & 
-  \\ \hline
-  \end{tabular*}
+  \begin{tikzpicture}[font=\small]
+  \begin{scope}[scale=.2]
+  \draw[fill=red!40] (0,0) -- (0,2) -- (3,2) --node[anchor=west]{Lower bound} (3,0) -- cycle;
+  \end{scope}
+  \end{tikzpicture}
+  \hfill
+  \begin{tikzpicture}[font=\small]
+  \begin{scope}[scale=.2]
+  \draw[fill=argon orange] (0,0) -- (0,2) -- (3,2) --node[anchor=west]{Solver} (3,0) -- cycle;
+  \end{scope}
+  \end{tikzpicture}
+  \hfill
+  \begin{tikzpicture}[font=\small]
+  \begin{scope}[scale=.2]
+  \draw[fill=argon gray] (0,0) -- (0,2) -- (3,2) --node[anchor=west]{Heuristic} (3,0) -- cycle;
+  \end{scope}
+  \end{tikzpicture}
+}
+
+\mytext[legend.south]{\blockwidth}{anchor = north,
+  inner sep = 2pt
+}{
+  \begin{center}
+  \input{images/Mel_solver_vs_heuristic.tikz}
+  \end{center}
+}
+
+\mytext[8,3.55]{1.8cm}{anchor = south west,
+  inner sep = 2pt, fill=white
+}{
+  \begin{center}
+  Infeasible
+  \end{center}
+}
+
+\mytext[8,1.25]{1.8cm}{anchor = south west,
+  inner sep = 2pt, fill=white
+}{
+  \begin{center}
+  Infeasible
+  \end{center}
 }
 
 \end{myframe}
+
 
 
 \begin{myframe}[Results for Lux instances]
@@ -1417,30 +1470,30 @@ surrogate backorder costs
   inner sep = 2pt
 }{
   \footnotesize
-  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lc|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|>{\raggedleft\arraybackslash}p{.7cm}|l@{\extracolsep{\fill}}}
+  \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}l@{\extracolsep{\fill}}c|@{\extracolsep{\fill}}r|@{\extracolsep{\fill}}r|@{\extracolsep{\fill}}r|@{\extracolsep{\fill}}r|@{\extracolsep{\fill}}l@{\extracolsep{\fill}}}
   & $\beta$ & \multicolumn{4}{c|}{Volatility} & \multicolumn{1}{c}{Output}
   \\
   & & \multicolumn{1}{c|}{5\%} & \multicolumn{1}{c|}{30\%} & \multicolumn{1}{c|}{50\%} & \multicolumn{1}{c|}{80\%} & 
   \\ \hline\hline
   \multirow{9}{*}{\rotatebox{90}{Heuristic}} & 85\% & 1409 & 1516 & 1708 & 1997 & Objective value \hfill {\scriptsize($\times10^3$)}
   \\ \cdashline{3-7}
-  &     & 23.0 & 21.0 & 24.0 & 31.0 & Multi-sourced items \hfill {\scriptsize(in \%)}
+  &     & 23\% & 21\% & 24\% & 31\% & Multi-sourced items
   \\
-  &     & 21.0 & 17.0 & 20.0 & 25.0 & \multicolumn{1}{c}{(on two plants)}
+  &     & 21\% & 17\% & 20\% & 25\% & (on two plants)
   \\
   &     & 3 & 3 & 3 & 4 & Multi-sourcing (max)
   \\ \cdashline{3-7}
-  &     & 24.1 & 24.7 & \multicolumn{1}{c|}{--} & \multicolumn{1}{c|}{--} & Gap \hfill {\scriptsize(in \%)}
+  &     & 24.1\% & 24.7\% & \multicolumn{1}{c|}{--} & \multicolumn{1}{c|}{--} & Gap
   \\
-  &     & 1070 & 1142 & \multicolumn{1}{c|}{--} & \multicolumn{1}{c|}{--} & Cont. relax. \hfill {\scriptsize($\times10^3$)}
+  &     & 1070 & 1142 & \multicolumn{1}{c|}{--} & \multicolumn{1}{c|}{--} & Continuous relaxation \hfill {\scriptsize($\times10^3$)}
   \\
-  &     & 8.0 & 14.3 & 24.0 & 24.0 & Time for bound \hfill {\scriptsize(in h)}
+  &     & 8h & 14h & 24h & 24h & Time for bound
   \\ \cdashline{3-7}
   &     & Limit & Yes & Yes & Yes & Feasibility
   \\
-  &     & \multicolumn{1}{c|}{--} & 89.4 & 94.0 & 94.6 & Fill rate service level \hfill {\scriptsize(in \%)}
+  &     & \multicolumn{1}{c|}{--} & 89.4\% & 94.0\% & 94.6\% & Fill rate service level
   \\
-  &     & 24.0 & 1.0 & 1.0 & 0.8 & Evaluation time \hfill {\scriptsize(in h)}
+  &     & 24h & 1h & 1h & 50min & Evaluation time
   \\ \hline
 \end{tabular*}
 

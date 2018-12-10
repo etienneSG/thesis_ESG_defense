@@ -1,0 +1,174 @@
+\begin{tikzpicture}[font=\scriptsize]
+
+  \pgfplotsset{
+    compat=newest,
+    xlabel near ticks,
+    ylabel near ticks,
+  }
+
+  \pgfkeys{/pgf/number format/.cd,
+  fixed,
+  fixed zerofill,
+  precision=0,
+  set thousands separator={}}
+
+  \begin{scope}[local bounding box=graph, scale=1.]
+    \begin{axis}[
+      width=.94\linewidth,
+      height=3cm,
+      ybar,
+      bar width=17pt,
+      xlabel={Volatility (in \%)},
+      ylabel={Objective value ($\times10^3$)},
+      ymin=0,
+      ytick=\empty,
+      xtick=data,
+      axis x line=bottom,
+      axis y line=left,
+      enlarge x limits=0.2,
+      symbolic x coords={$5$,$30$,$50$,$80$},
+      %xticklabel style={anchor=base,yshift=-\baselineskip},
+      x label style={at={(current axis.right of origin)},anchor=west},
+      y label style={at={(current axis.above origin)},rotate=-90,anchor=south},
+      nodes near coords={\pgfmathprintnumber\pgfplotspointmeta}
+    ]
+      \addplot[fill=red!40] coordinates {
+        ($5$,746)
+        ($30$,828)
+        ($50$,921)
+        ($80$,1192)
+      };
+      \addplot[fill=argon orange] coordinates {
+        ($5$,967)
+        ($30$,1034)
+        ($50$,1134)
+        ($80$,1381)
+      };
+      \addplot[fill=argon gray] coordinates {
+        ($5$,1176)
+        ($30$,1136)
+        ($50$,1541)
+        ($80$,1640)
+      };
+    \end{axis}
+    \draw (.85\linewidth,1) node[anchor=west]{\large$\servicelvl=70\%$};
+  \end{scope}
+\end{tikzpicture}
+
+
+\begin{tikzpicture}[font=\scriptsize]
+
+  \pgfplotsset{
+    compat=newest,
+    xlabel near ticks,
+    ylabel near ticks,
+  }
+
+  \pgfkeys{/pgf/number format/.cd,
+  fixed,
+  fixed zerofill,
+  precision=0,
+  set thousands separator={}}
+
+  \begin{scope}[local bounding box=graph, scale=1.]
+    \begin{axis}[
+      width=.94\linewidth,
+      height=3cm,
+      ybar,
+      bar width=17pt,
+      xlabel={Volatility (in \%)},
+      ylabel={Objective value ($\times10^3$)},
+      ymin=0,
+      ytick=\empty,
+      xtick=data,
+      axis x line=bottom,
+      axis y line=left,
+      enlarge x limits=0.2,
+      symbolic x coords={$5$,$30$,$50$,$80$},
+      %xticklabel style={anchor=base,yshift=-\baselineskip},
+      x label style={at={(current axis.right of origin)},anchor=west},
+      y label style={at={(current axis.above origin)},rotate=-90,anchor=south,yshift=4pt},
+      nodes near coords={\pgfmathprintnumber\pgfplotspointmeta}
+    ]
+      \addplot[fill=red!40] coordinates {
+        ($5$,813)
+        ($30$,895)
+        ($50$,1054)
+        ($80$,0)
+      };
+      \addplot[fill=argon orange] coordinates {
+        ($5$,957)
+        ($30$,1087)
+        ($50$,1188)
+        ($80$,0)
+      };
+      \addplot[fill=argon gray] coordinates {
+        ($5$,1134)
+        ($30$,1112)
+        ($50$,1230)
+        ($80$,0)
+      };
+    \end{axis}
+    \draw (.85\linewidth,1) node[anchor=west]{\large$\servicelvl=85\%$};
+  \end{scope}
+\end{tikzpicture}
+
+
+\begin{tikzpicture}[font=\scriptsize]
+
+  \pgfplotsset{
+    compat=newest,
+    xlabel near ticks,
+    ylabel near ticks,
+  }
+
+  \pgfkeys{/pgf/number format/.cd,
+  fixed,
+  fixed zerofill,
+  precision=0,
+  set thousands separator={}}
+
+  \begin{scope}[local bounding box=graph, scale=1.]
+    \begin{axis}[
+      width=.94\linewidth,
+      height=3cm,
+      ybar,
+      bar width=17pt,
+      xlabel={Volatility (in \%)},
+      ylabel={Objective value ($\times10^3$)},
+      ymin=0,
+      ytick=\empty,
+      xtick=data,
+      axis x line=bottom,
+      axis y line=left,
+      enlarge x limits=0.2,
+      symbolic x coords={$5$,$30$,$50$,$80$},
+      %xticklabel style={anchor=base,yshift=-\baselineskip},
+      x label style={at={(current axis.right of origin)},anchor=west},
+      y label style={at={(current axis.above origin)},rotate=-90,anchor=south},
+      nodes near coords={\pgfmathprintnumber\pgfplotspointmeta}
+    ]
+      \addplot[fill=red!40] coordinates {
+        ($5$,886)
+        ($30$,1173)
+        ($50$,1371)
+        ($80$,0)
+      };
+      \addplot[fill=argon orange] coordinates {
+        ($5$,956)
+        ($30$,1173)
+        ($50$,1371)
+        ($80$,0)
+      };
+      \addplot[fill=argon gray] coordinates {
+        ($5$,968)
+        ($30$,1210)
+        ($50$,1396)
+        ($80$,0)
+      };
+    \end{axis}
+    \draw (.85\linewidth,1) node[anchor=west]{\large$\servicelvl=95\%$};
+  \end{scope}
+\end{tikzpicture}
+
+
