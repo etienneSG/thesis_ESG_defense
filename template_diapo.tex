@@ -337,7 +337,7 @@
     \begin{itemize}
       \item Stochastic demand
       \item Production levels can be set each week
-      \item Objective: minimize the expected costs
+      \item Objective: minimize the expected holding costs
     \end{itemize}
     \item Need for backorder
     \begin{itemize}
@@ -453,7 +453,7 @@
   \begin{itemize}
   \item Stochastic model is bigger than deterministic model
     \begin{itemize}
-      \item Exact solving is not yet an option
+      \item Exact methods are not yet an option
       \begin{itemize}
         \item Multi-stage with $\horizon\sim15$
         \item Huge number of variables
@@ -704,7 +704,7 @@ inner sep = 2pt
     \item Parameters:
     \begin{itemize}
       \item Projected demand used as expectation (e.g., historical demand)
-      \item One parameter $v$ (volatility) such as $v\simeq\frac{\mbox{standard deviation}}{\mbox{expectation}}$
+      \item One parameter $v$ (volatility) such that $v\simeq\mbox{std}\sqbracket{\va\demand_t^i}/\espe\sqbracket{\va\demand_t^i}$ %$v\simeq\frac{\mbox{standard deviation}}{\mbox{expectation}}$
     \end{itemize}
     \item Simulation based on Gamma distributed variables
   \end{itemize}
@@ -741,19 +741,19 @@ inner sep = 2pt
   & \multicolumn{1}{c}{Det.}
   & \multicolumn{1}{c}{Argon}
   \\\hline
-  $L_0$ & 1616 & 1679 & 8237
+  $L_0$ & 1~616 & 1~679 & 8~237
   \\
-  $L_1$ & 1869 & 2006 & 14450
+  $L_1$ & 1~869 & 2~006 & 14~450
   \\
-  $L_2$ & 1367 & 1481 & 9280
+  $L_2$ & 1~367 & 1~481 & 9~280
   \\
-  $L_3$ & 707 & 741 & 4481
+  $L_3$ & 707 & 741 & 4~481
   \\
-  $L_4$ & 755 & 830 & 8292
+  $L_4$ & 755 & 830 & 8~292
   \\
-  $L_5$ & 400 & 433 & 1093
+  $L_5$ & 400 & 4~33 & 1~093
   \\
-  $L_6$ & 2262 & 2424 & 3594
+  $L_6$ & 2~262 & 2~424 & 3~594
   \\\hline\hline
   \small Computing time & $120$s & $\le10$s & $\le1$s
   \\\hline
@@ -801,7 +801,7 @@ inner sep = 2pt
 }{
   \footnotesize
   \begin{itemize}
-  \item Average results for $L_5$ for objective fill rate service level $\in\crbracket{85\%,95\%,98\%}$
+  \item Average results for $L_5$ for objective fill rate service level $\in\crbracket{85\%,90\%,95\%,98\%,99\%}$
   \end{itemize}
 }
 
@@ -818,7 +818,7 @@ inner sep = 2pt
     \item Backorder and fill rate service level
     \begin{itemize}
       \item Argon's heuristic always has very high service level at the expense of high inventory
-      \item (2SA-$m$) and Det. are more flexible but too optimistic
+      \item (2SA-$m$) and Det. are more adaptive but too optimistic
     \end{itemize}
     \item Workload is greater for Argon's heuristic than in (2SA-$m$) and Det.
     \item Flexibility is not fully used in Argon's heuristic ($\sim90\%$)
@@ -873,7 +873,7 @@ inner sep = 2pt
 surrogate backorder costs
       \begin{itemize}
         \item Based on the newsvendor problem
-        \item Too optimistic
+        \item Underestimated
       \end{itemize}
       \item Alternative model using \emph{cover-sizes} as decision variables
       \begin{itemize}
@@ -925,6 +925,7 @@ surrogate backorder costs
     \begin{itemize}
       \item At time $t=0$, decide for each $i$ which plants can produce $i$ (\emph{flexibility})
       \item These decisions are then set for the whole horizon $\horizon$
+      \item At time $t\ge1$, plants face a production planning problem
     \end{itemize}
     \item Objective: minimize the cost
     \begin{itemize}
@@ -936,14 +937,11 @@ surrogate backorder costs
       \item ``High long term service level''
       \item Worst cases ``not too bad''
     \end{enumerate}
-    \item Model must not be too dependent of the industry
-    \begin{itemize}
-      \item Versatility for Argon Consulting
-    \end{itemize}
+    \item Model must not be too dependent of the industry (versatility)
   \end{itemize}
 }
 
-\mytext[4.9,2.95]{.6\blockwidth}{anchor = north west,
+\mytext[4.9,2.6]{.6\blockwidth}{anchor = north west,
   inner sep = 2pt
 }{
   $\ds\left.\begin{array}{c}\phantom{H}\\\phantom{W}\end{array}\right\}$
@@ -1502,7 +1500,7 @@ surrogate backorder costs
   \item[]
   \item Current multi-sourcing in Lux
   \begin{itemize}
-    \item Cost $=6631$
+    \item Objective value $=6631$
   \end{itemize}
 \end{itemize}
 }
@@ -1582,7 +1580,7 @@ surrogate backorder costs
 
     \vspace{-.25cm}
 
-    $$\mbox{\small$\cover_i^*= \frac{\sum_{j\in\REF}\sqrt{\holding_j\demand_j\bracket{1-\frac{\demand_j}{\rate_j}}}}{\nbsetups\sqrt{\holding_i\demand_i\bracket{1-\frac{\demand_i}{\rate_i}}}}\qquad\forall i\in\REF,$}$$
+    $$\mbox{\small$\cover_i^*= \frac{\sum_{j\in\REF}\sqrt{\holding_j\demand_j\bracket{1-\frac{\demand_j}{\rate_j}}}}{\nbsetups\sqrt{\holding_i\demand_i\bracket{1-\frac{\demand_i}{\rate_i}}}}\qquad\forall i\in\REF$}$$
 
     \vspace{-.25cm}
 
