@@ -31,17 +31,17 @@
     % Assignment using expectation
     \visible<2>
     {
+      \fill[orange!50] (\xdmin,\ydmin) -- (\xdmax,\ydmin) -- (\xdmax,\ydmax) -- (\xdmin,\ydmax) -- cycle;
       \fill[green!50] (\xstart,\ydav) -- (\xdav,\ydav) -- (\xdav,\ystart) -- (\xstart,\ystart) -- cycle;
-      \fill[red!50] (\xstart,\ydav) -- (\xdav,\ydav) -- (\xdav,\ystart) -- (\xstart,\ystart) -- (\xdmax,\ystart) -- (\xdmax,\ydmax) -- (\xstart,\ydmax) -- cycle;
+      \fill[red!50] (\xdmax,\ydav) -- (\xdav,\ydav) -- (\xdav,\ydmax) -- (\xdmax,\ydmax) -- cycle;
     }
 
     %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     % Robust assignment
     \visible<3>
     {
+      \fill[orange!50] (\xdmin,\ydmin) -- (\xdmax,\ydmin) -- (\xdmax,\ydmax) -- (\xdmin,\ydmax) -- cycle;
       \fill[green!50] (\xstart,\ydmax) -- ({\xdav-(\ydmax-\ydav)},\ydmax) -- (\xdmax,{\xdav-(\xdmax-\xdav)}) -- (\xdmax,\ystart) -- (\xstart,\ystart) -- cycle;
-      \fill[orange!50] ({\xdav-(\ydmax-\ydav)},\ydmax) -- (\xdav,\ydmax) -- (\xdav,\ydav) -- cycle;
-      \fill[orange!50] (\xdmax,{\xdav-(\xdmax-\xdav)}) -- (\xdmax,\ydav) -- (\xdav,\ydav) -- cycle;
       \fill[red!50] (\xdmax,\ydav) -- (\xdav,\ydav) -- (\xdav,\ydmax) -- (\xdmax,\ydmax) -- cycle;
     }
 
@@ -50,9 +50,9 @@
     % Reasonable assignment
     \visible<4>
     {
+      \fill[orange!50] (\xdmin,\ydmin) -- (\xdmax,\ydmin) -- (\xdmax,\ydmax) -- (\xdmin,\ydmax) -- cycle;
       \fill[green!50] (\xstart,\ydav) -- (\xdav,\ydav) -- (\xdmax,{\xdav-(\xdmax-\xdav)}) -- (\xdmax,\ystart) -- (\xstart,\ystart) -- cycle;
-      \fill[orange!50] (\xdmax,{\xdav-(\xdmax-\xdav)}) -- (\xdmax,\ydav) -- (\xdav,\ydav) -- cycle;
-      \fill[red!50] (\xdmax,\ydav) -- (\xstart,\ydav) -- (\xstart,\ydmax) -- (\xdmax,\ydmax) -- cycle;
+      \fill[red!50] (\xdmax,\ydav) -- (\xdav,\ydav) -- (\xdav,\ydmax) -- (\xdmax,\ydmax) -- cycle;
     }
 
 
